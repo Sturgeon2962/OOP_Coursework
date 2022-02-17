@@ -6,14 +6,15 @@ public class Team {
     private String teamName;
     private ArrayList<Rider> teamMembers; 
     private String description;
-    public static int nextTeamId;
+    public static int nextTeamId = 0;
     private int teamId;
 
     public Team (String name, String description){
-        this.teamName = name;
+        teamName = name;
         this.description = description;
-        this.teamId = nextTeamId;
+        teamId = nextTeamId;
         nextTeamId++;
+        teamMembers = new ArrayList();
     }
 
     public String getTeamName(){
@@ -34,5 +35,9 @@ public class Team {
 
     public void setTeamDescription(String description){
         this.description = description;
+    }
+
+    public void createRider(String name, int yearOfBirth){
+        teamMembers.add(new Rider(teamId, name, yearOfBirth));
     }
 }
