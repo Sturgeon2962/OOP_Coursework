@@ -2,10 +2,14 @@ package cycling;
 import java.util.ArrayList;
 
 public class Race {
-    // attributes
+    // non-static attributes
     private String name;
     private String description;
     private ArrayList<Stage> stages;
+    private int raceID;
+
+    // static attributes
+    public static int nextRaceID = 1;
 
     public String getName() {
         return name;
