@@ -1,7 +1,9 @@
 package cycling;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 // Stage categories
-enum Category {
+enum StageType {
     FLAT, HILLY, MOUNTAIN, TT;
 }
 
@@ -24,10 +26,49 @@ public class Stage {
     private final static int[] mountainHCPoints = { 20, 15, 12, 10, 8, 6, 4, 2 };
 
     // Non-static attributes
-    private Category category;
+    private StageType category;
+    private ArrayList<Segments> segments;
+    private String name;
+    private String description;
+    private double length;
+    private LocalDateTime startTime;
+
+    // Contructor
+    Stage(String stageName, String stageDescription, double stageLength, LocalDateTime stageStartTime, StageType type) {
+        name = stageName;
+        description = stageDescription;
+        length = stageLength;
+        startTime = stageStartTime;
+        category = type;
+        segments = new ArrayList<Segments>();
+    }
 
     public static int[] getSprintFlat() {
         return sprintFlatPoints;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public StageType getCategory() {
+        return category;
+    }
+
+    public ArrayList<Segments> getSegments() {
+        return segments;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
     public static int[] getSprintHilly() {
