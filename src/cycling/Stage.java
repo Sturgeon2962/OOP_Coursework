@@ -1,9 +1,20 @@
 package cycling;
 
+// Stage categories
+enum Category {
+    FLAT, HILLY, MOUNTAIN, TT;
+}
+
+// Stage segments
+enum Segments {
+    INTERSPRINT, C4, C3, C2, C1, HC;
+}
+
 public class Stage {
+    // Stage points - static attributes
     private final static int[] sprintFlatPoints = { 50, 30, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2 };
     private final static int[] sprintHillyPoints = { 30, 25, 22, 19, 17, 15, 13, 11, 9, 7, 6, 5, 4, 3, 2 };
-    private final static int[] sprintHighPoints = { 20, 17, 15, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+    private final static int[] sprintMountainPoints = { 20, 17, 15, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
     private final static int[] sprintTTPoints = { 20, 17, 15, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
     private final static int[] sprintIntermediatePoints = { 20, 17, 15, 13, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
     private final static int[] mountainCat4Points = { 1 };
@@ -11,6 +22,9 @@ public class Stage {
     private final static int[] mountainCat2Points = { 5, 3, 2, 1 };
     private final static int[] mountainCat1Points = { 10, 8, 6, 4, 2, 1 };
     private final static int[] mountainHCPoints = { 20, 15, 12, 10, 8, 6, 4, 2 };
+
+    // Non-static attributes
+    private Category category;
 
     public static int[] getSprintFlat() {
         return sprintFlatPoints;
@@ -25,7 +39,7 @@ public class Stage {
     }
 
     public static int[] getSprintHigh() {
-        return sprintHighPoints;
+        return sprintMountainPoints;
     }
 
     public static int[] getSprintIntermediate() {
