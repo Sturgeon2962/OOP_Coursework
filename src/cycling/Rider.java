@@ -8,15 +8,14 @@ public class Rider {
     private int yearOfBirth;
 
     // Static Rider Attributes
-    public static int nextRiderId = 0;
+    public static int nextRiderId = 1;
 
     // Constructor For a rider (called using a Team.java Method)
     public Rider(int teamId, String name, int yearOfBirth){
         this.name = name;
         this.teamId = teamId;
         this.yearOfBirth = yearOfBirth;
-        riderId = nextRiderId;
-        nextRiderId++;
+        riderId = nextRiderId++;
     }
 
     // Getters and setter for all attributes
