@@ -2,16 +2,6 @@ package cycling;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-// Stage categories
-enum StageType {
-    FLAT, HILLY, MOUNTAIN, TT;
-}
-
-// Stage segments
-enum Segments {
-    INTERSPRINT, C4, C3, C2, C1, HC;
-}
-
 public class Stage {
     // Stage points - static attributes
     private final static int[] sprintFlatPoints = { 50, 30, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2 };
@@ -27,7 +17,7 @@ public class Stage {
 
     // Non-static attributes
     private StageType category;
-    private ArrayList<Segments> segments;
+    private ArrayList<> segments;
     private String name;
     private String description;
     private double length;
@@ -40,9 +30,10 @@ public class Stage {
         length = stageLength;
         startTime = stageStartTime;
         category = type;
-        segments = new ArrayList<Segments>();
+        segments = new ArrayList<>();
     }
 
+    // Getters/Setters
     public static int[] getSprintFlat() {
         return sprintFlatPoints;
     }
@@ -106,4 +97,7 @@ public class Stage {
     public static int[] getMountainHC() {
         return mountainHCPoints;
     }
+
+    // Add segment
+
 }
