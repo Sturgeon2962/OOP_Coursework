@@ -9,7 +9,7 @@ public class Team {
     private int teamId;
 
     // Static Team Attributes
-    public static int nextTeamId = 0;
+    public static int nextTeamId = 1;
 
     // Constructor for a team
     public Team (String name, String description){
