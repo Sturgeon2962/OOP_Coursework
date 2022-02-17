@@ -1,16 +1,16 @@
 package cycling;
 
 public class Rider {
-    //Non-static Rider Attributes
+    // Non-static Rider Attributes
     private String name;
     private int riderId;
     private int teamId;
     private int yearOfBirth;
 
-    //Static Rider Attributes
+    // Static Rider Attributes
     public static int nextRiderId = 0;
 
-    //Constructor For a rider (called using a Team.java Method)
+    // Constructor For a rider (called using a Team.java Method)
     public Rider(int teamId, String name, int yearOfBirth){
         this.name = name;
         this.teamId = teamId;
@@ -19,7 +19,7 @@ public class Rider {
         nextRiderId++;
     }
 
-    //Getters and setter for all attributes
+    // Getters and setter for all attributes
     public int getYearOfBirth() {
         return yearOfBirth;
     }
@@ -44,6 +44,6 @@ public class Rider {
         return name;
     }
     
-    //Methods bellow this point
+    // Methods bellow this point
 
 }

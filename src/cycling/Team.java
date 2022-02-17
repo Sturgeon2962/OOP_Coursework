@@ -2,16 +2,16 @@ package cycling;
 import java.util.ArrayList;
 
 public class Team {
-    //Non-Static Team Attributes
+    // Non-Static Team Attributes
     private String teamName;
     private ArrayList<Rider> teamMembers; 
     private String description;
     private int teamId;
 
-    //Static Team Attributes
+    // Static Team Attributes
     public static int nextTeamId = 0;
 
-    //Constructor for a team
+    // Constructor for a team
     public Team (String name, String description){
         teamName = name;
         this.description = description;
@@ -21,7 +21,7 @@ public class Team {
     }
 
 
-    //Getters and setters for all attibutes
+    // Getters and setters for all attibutes
     public String getTeamName(){
         return this.teamName;
     }
@@ -46,5 +46,5 @@ public class Team {
         teamMembers.add(new Rider(teamId, name, yearOfBirth));
     }
 
-    //All other methods
+    // All other methods
 }
