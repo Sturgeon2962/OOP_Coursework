@@ -15,8 +15,7 @@ public class Team {
     public Team (String name, String description){
         teamName = name;
         this.description = description;
-        teamId = nextTeamId;
-        nextTeamId++;
+        teamId = nextTeamId++;
         teamMembers = new ArrayList<Rider>();
     }
 

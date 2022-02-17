@@ -15,8 +15,7 @@ public class Rider {
         this.name = name;
         this.teamId = teamId;
         this.yearOfBirth = yearOfBirth;
-        riderId = nextRiderId;
-        nextRiderId++;
+        riderId = nextRiderId++;
     }
 
     // Getters and setter for all attributes
