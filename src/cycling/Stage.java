@@ -17,7 +17,7 @@ public class Stage {
 
     // Non-static attributes
     private StageType category;
-    private ArrayList<> segments;
+    private ArrayList<Segment> segments;
     private String name;
     private String description;
     private double length;
@@ -30,7 +30,7 @@ public class Stage {
         length = stageLength;
         startTime = stageStartTime;
         category = type;
-        segments = new ArrayList<>();
+        segments = new ArrayList<Segment>();
     }
 
     // Getters/Setters
@@ -54,7 +54,7 @@ public class Stage {
         return category;
     }
 
-    public ArrayList<Segments> getSegments() {
+    public ArrayList<Segment> getSegments() {
         return segments;
     }
 
