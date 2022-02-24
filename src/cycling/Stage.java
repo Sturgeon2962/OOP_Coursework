@@ -40,12 +40,12 @@ public class Stage {
      * {@link StageType#MEDIUM_MOUNTAIN}, {@link StageType#HIGH_MOUNTAIN},
      * {@link StageType#TT}
      */
-    Stage(String stageName, String stageDescription, double stageLength, LocalDateTime stageStartTime, StageType type) {
-        name = stageName;
-        description = stageDescription;
-        length = stageLength;
-        startTime = stageStartTime;
-        category = type;
+    Stage(String name, String description, double length, LocalDateTime startTime, StageType category) {
+        setName(name);
+        setDescription(description);
+        setLength(length);
+        setStartTime(startTime);
+        setCategory(category);
         segments = new ArrayList<Segment>();
     }
 
@@ -56,6 +56,53 @@ public class Stage {
      * 
      * @return Returns an array of integers containing the flat sprint points
      */
+    /**
+     * The method sets the name of the stage
+     * 
+     * @param name The name of the stage
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * The method sets the description of the stage
+     * 
+     * @param description A breif description of the stage
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * The method sets the length of the stage
+     * 
+     * @param length The length of the stage (km)
+     */
+    public void setLength(double length) {
+        this.length = length;
+    }
+
+    /**
+     * The method sets the start time of the stage
+     * 
+     * @param startTime The start time of the race
+     */
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * The method sets the category of the stage
+     * 
+     * @param category The category of the stage - {@link StageType#FLAT},
+     * {@link StageType#MEDIUM_MOUNTAIN}, {@link StageType#HIGH_MOUNTAIN},
+     * {@link StageType#TT}
+     */
+    public void setCategory(StageType category) {
+        this.category = category;
+    }
+    
     public static int[] getSprintFlat() {
         return sprintFlatPoints;
     }
