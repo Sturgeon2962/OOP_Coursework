@@ -41,7 +41,7 @@ public class Team {
     /**
      * Getter for the team name
      * 
-     * @return Returns the team name
+     * @return Returns the  string containing team name
      */
     public String getTeamName(){
         return this.teamName;
@@ -68,7 +68,7 @@ public class Team {
     /**
      * Getter for team description
      * 
-     * @return Returns a brief description of the team 
+     * @return Returns a string containing a brief description of the team 
      */
     public String getTeamDescription(){
         return this.description;
