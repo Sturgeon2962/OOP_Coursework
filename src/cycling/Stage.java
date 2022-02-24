@@ -2,6 +2,12 @@ package cycling;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * A class to represent a stage of a race
+ * 
+ * @author
+ * @version 1.0
+ */
 public class Stage {
     // Stage points - static attributes
     private final static int[] sprintFlatPoints = { 50, 30, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2 };
@@ -23,7 +29,17 @@ public class Stage {
     private double length;
     private LocalDateTime startTime;
 
-    // Contructor
+    /**
+     * Constructor to create a new stage
+     * 
+     * @param stageName The name of the race
+     * @param stageDescription A breif description of the race
+     * @param stageLength The length of the race (km)
+     * @param stageStartTime The local start time of the race
+     * @param type The type of the stage - {@link StageType#FLAT},
+     * {@link StageType#MEDIUM_MOUNTAIN}, {@link StageType#HIGH_MOUNTAIN},
+     * {@link StageType#TT}
+     */
     Stage(String stageName, String stageDescription, double stageLength, LocalDateTime stageStartTime, StageType type) {
         name = stageName;
         description = stageDescription;
