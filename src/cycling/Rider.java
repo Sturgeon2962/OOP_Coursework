@@ -29,7 +29,7 @@ public class Rider {
     /**
      * A getter for the year of birth of the rider
      * 
-     * @return Returns the year of birth of the rider
+     * @return Returns the integer of the year of birth of the rider
      */
     public int getYearOfBirth() {
         return yearOfBirth;
@@ -47,7 +47,7 @@ public class Rider {
     /**
      * A getter for the team Id
      * 
-     * @return Returns the Id of the riders team
+     * @return Returns the integer Id of the riders team
      */
     public int getTeamId() {
         return teamId;
@@ -65,7 +65,7 @@ public class Rider {
     /**
      * A getter for the Rider's Id
      * 
-     * @return The Id of the Rider
+     * @return The integer Id of the Rider
      */
     public int getRiderId() {
         return riderId;
