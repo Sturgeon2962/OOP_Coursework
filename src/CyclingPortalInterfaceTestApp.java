@@ -1,6 +1,8 @@
-import cycling.BadCyclingPortal;
+import cycling.CyclingPortal;
 import cycling.BadMiniCyclingPortal;
 import cycling.CyclingPortalInterface;
+import cycling.IllegalNameException;
+import cycling.InvalidNameException;
 import cycling.MiniCyclingPortalInterface;
 
 /**
@@ -23,11 +25,17 @@ public class CyclingPortalInterfaceTestApp {
 	public static void main(String[] args) {
 		System.out.println("The system compiled and started the execution...");
 
-		MiniCyclingPortalInterface portal = new BadMiniCyclingPortal();
-//		CyclingPortalInterface portal = new BadCyclingPortal();
+		CyclingPortalInterface portal = new CyclingPortal();
 
-		assert (portal.getRaceIds().length == 0)
-				: "Innitial SocialMediaPlatform not empty as required or not returning an empty array.";
+		try {
+			portal.createRace("Fuck_Josh", "This is a fucking test an i hop it works for josh sake");
+		} catch (IllegalNameException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (InvalidNameException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 
 	}
 

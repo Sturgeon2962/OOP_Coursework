@@ -30,6 +30,8 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public int[] getRaceIds() {
 		// TODO Auto-generated method stub
+		
+
 		return null;
 	}
 
@@ -42,8 +44,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 			}
 		}
 		isInvalidName(name);
-		Race.races.add(new Race(name, description));
-		return 0;
+		Race newRace = new Race(name, description);
+		Race.races.add(newRace);
+		return newRace.getRaceID();
 	}
 
 	@Override
