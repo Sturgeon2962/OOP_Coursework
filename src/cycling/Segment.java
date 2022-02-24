@@ -1,6 +1,6 @@
 package cycling;
 
-public class Segment {
+public abstract class Segment {
     // Non-Static Attributes
     private SegmentType type;
     private double location;
