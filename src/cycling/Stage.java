@@ -82,18 +82,38 @@ public class Stage {
         return mountainCat4Points;
     }
 
+    /**
+     * A getter for the mountainC3 points
+     * 
+     * @return Returns the array containing mountainCat3 points
+     */ 
     public static int[] getMountainC3() {
         return mountainCat3Points;
     }
 
+    /**
+     * A getter for the mountainC2 points
+     * 
+     * @return Returns the array containing mountaincat2 points
+     */
     public static int[] getMountainC2() {
         return mountainCat2Points;
     }
 
+    /**
+     * A getter for the mountainC1 points
+     * 
+     * @return Returns the array containing mountainCat1 points
+     */
     public static int[] getMountainC1() {
         return mountainCat1Points;
     }
 
+    /**
+     * A getter for the MountainHC points
+     * 
+     * @return Returns the Array containing mountainHCpoints
+     */
     public static int[] getMountainHC() {
         return mountainHCPoints;
     }
