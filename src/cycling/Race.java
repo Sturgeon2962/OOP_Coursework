@@ -1,6 +1,12 @@
 package cycling;
 import java.util.ArrayList;
 
+/**
+ * A class to represent a race containing stages and teams of riders.
+ * 
+ * @author
+ * @version 1.0
+ */
 public class Race {
     // non-static attributes
     private String name;
@@ -11,7 +17,12 @@ public class Race {
     // static attributes
     public static int nextRaceID = 1;
 
-    // Constructor
+    /**
+     * The constructor to create a race
+     * 
+     * @param name The name of the race
+     * @param descripion A breif description of the race
+     */
     public Race(String name, String descripion) {
         this.name = name;
         this.description = descripion;
