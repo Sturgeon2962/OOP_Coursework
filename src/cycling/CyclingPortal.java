@@ -8,7 +8,7 @@ import java.time.LocalTime;
 /**
  * CyclingPortal is love, CyclingPortal is life.
  * 
- * @author Diogo Pacheco
+ * @author Humans
  * @version 1.0
  *
  */
