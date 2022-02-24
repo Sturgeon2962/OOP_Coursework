@@ -24,24 +24,62 @@ public class Race {
      * @param descripion A breif description of the race
      */
     public Race(String name, String descripion) {
-        this.name = name;
-        this.description = descripion;
+        setName(name);
+        setDescription(description);
         stages = new ArrayList<Stage>();
         raceID = nextRaceID++;
     }
 
+    /**
+     * A method to set the name of a race
+     * 
+     * @param name The name of the race
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * A mtehod to set the description of the race
+     * 
+     * @param description A brief description of the race
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * The method gets the name of the race
+     * 
+     * @return A String of the name of the race
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * The method gets the ID of the race
+     * 
+     * @return An Int of the ID of the race
+     */
     public int getRaceID() {
         return raceID;
     }
 
+    /**
+     * The method gets the stages in the race
+     * 
+     * @return An ArrayList of stages in the race
+     */
     public ArrayList<Stage> getStages() {
         return stages;
     }
 
+    /**
+     * The method gets the description of the race
+     * 
+     * @return A String of a breif description of the race
+     */
     public String getDescription() {
         return description;
     }
