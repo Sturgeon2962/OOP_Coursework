@@ -16,6 +16,11 @@ public class Team {
 
     // Static Team Attributes
     public static int nextTeamId = 1;
+    /*
+    Could be better to use random IDs
+    Between 0 and Integer.maxValue or similar
+    Means people can't malicously go through every ID
+    */
 
     // Getter and setters
 
