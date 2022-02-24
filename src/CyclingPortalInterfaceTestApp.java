@@ -37,6 +37,7 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
+		System.out.println(portal.getRaceIds().length);
 	}
 
 }
