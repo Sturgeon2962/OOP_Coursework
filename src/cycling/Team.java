@@ -31,8 +31,8 @@ public class Team {
      * @param description A brief description of the team
      */
     public Team (String name, String description){
-        teamName = name;
-        this.description = description;
+        setTeamName(name);
+        setTeamDescription(description);
         teamId = nextTeamId++;
         teamMembers = new ArrayList<Rider>();
     }

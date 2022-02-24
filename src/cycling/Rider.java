@@ -24,9 +24,9 @@ public class Rider {
      * @param yearOfBirth The year that the rider was born
      */
     public Rider(int teamId, String name, int yearOfBirth){
-        this.name = name;
-        this.teamId = teamId;
-        this.yearOfBirth = yearOfBirth;
+        setName(name);
+        setTeamId(teamId);
+        setYearOfBirth(yearOfBirth);
         riderId = nextRiderId++;
     }
 
@@ -86,6 +86,14 @@ public class Rider {
         return name;
     }
     
+    /**
+     * A setter for the riders name
+     * 
+     * @param name The name of the rider
+     */
+    public void setName(String name){
+        this.name = name;
+    }
     // Methods bellow this point
 
 }
