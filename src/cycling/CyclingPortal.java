@@ -14,6 +14,19 @@ import java.time.LocalTime;
  */
 public class CyclingPortal implements CyclingPortalInterface {
 
+	public void isInvalidName(String name) throws InvalidNameException{
+
+		if(name.equals(null) || name.equals("")){
+			throw new InvalidNameException("name is empty or null");
+		}
+		if(name.contains(" ")){
+			throw new InvalidNameException("Name is more than 1 word");
+		}
+		//check if string is too long
+
+		
+	}
+
 	@Override
 	public int[] getRaceIds() {
 		// TODO Auto-generated method stub
@@ -23,6 +36,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public int createRace(String name, String description) throws IllegalNameException, InvalidNameException {
 		// TODO Auto-generated method stub
+		for(Race race:Race.races){
+			if(race.getName().equals(name)){
+				throw new IllegalNameException("Name in use");
+			}
+		}
+		isInvalidName(name);
+		Race.races.add(new Race(name, description));
 		return 0;
 	}
 
@@ -106,6 +126,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public int createTeam(String name, String description) throws IllegalNameException, InvalidNameException {
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

@@ -16,6 +16,7 @@ public class Race {
 
     // static attributes
     public static int nextRaceID = 1;
+    public static ArrayList<Race> races = new ArrayList<Race>();
 
     /**
      * The constructor to create a race
