@@ -27,7 +27,7 @@ public abstract class Segment {
     /**
      * The method gets the location of the segment.
      * 
-     * @return The km location where the segment finished within the stage.
+     * @return A double of the km location where the segment finished within the stage.
      */
     public double getLocation() {
         return location;
