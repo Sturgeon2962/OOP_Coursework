@@ -1,5 +1,11 @@
 package cycling;
 
+/**
+ * A class to represent a riders in a race
+ * 
+ * @author
+ * @version 1.0
+ */
 public class Rider {
     // Non-static Rider Attributes
     private String name;
