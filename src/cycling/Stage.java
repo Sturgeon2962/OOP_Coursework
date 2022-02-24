@@ -50,50 +50,111 @@ public class Stage {
     }
 
     // Getters/Setters
+
+    /**
+     * A getter for the Flat sprin points
+     * 
+     * @return Returns an array of integers containing the flat sprint points
+     */
     public static int[] getSprintFlat() {
         return sprintFlatPoints;
     }
 
+    /**
+     * A getter for the race length
+     * 
+     * @return Returns a double containing the length of the race
+     */
     public double getLength() {
         return length;
     }
 
+    /**
+     * Agetter for a description of the race
+     * 
+     * @return Returns a string containing a description of the race
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * A getter for the race name
+     * 
+     * @return Returns a string containing the race name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * A getter fo the catagory of a race
+     * 
+     * @return  Returns the StageType of the race
+     */
     public StageType getCategory() {
         return category;
     }
 
+    /**
+     * A getter for the segments in a race
+     * 
+     * @return Returns an ArrayList of segments of all the segments in a race
+     */
     public ArrayList<Segment> getSegments() {
         return segments;
     }
 
+    /**
+     * A getter for the start time#
+     * * 
+     * @return Returns the localDateTime containing the start time
+     */ 
     public LocalDateTime getStartTime() {
         return startTime;
     }
 
+    /**
+     * A getter for the hilly sprint points
+     * 
+     * @return Returns the array of integers containing hilly sprint points
+     */ 
     public static int[] getSprintHilly() {
         return sprintHillyPoints;
     }
 
+    /**
+     * A getter for the Time trial sprints points
+     * 
+     * @return Returns the array of integers containing time trial sprint points
+     */ 
     public static int[] getSprintTT() {
         return sprintTTPoints;
     }
 
+    /**
+     * A getter for the mountain sprint points
+     * 
+     * @return Returns the array of integers containing mountain sprint points
+     */ 
     public static int[] getSprintHigh() {
         return sprintMountainPoints;
     }
 
+    /**
+     * A getter for the sprint intermediate points
+     * 
+     * @return Returns the array of integers containing sprint intermediate points
+     */ 
     public static int[] getSprintIntermediate() {
         return sprintIntermediatePoints;
     }
 
+    /**
+     * A getter for the mountainC4 points
+     * 
+     * @return Returns the array of integers containing mountainCat4 points
+     */ 
     public static int[] getMountainC4() {
         return mountainCat4Points;
     }
@@ -101,7 +162,7 @@ public class Stage {
     /**
      * A getter for the mountainC3 points
      * 
-     * @return Returns the array containing mountainCat3 points
+     * @return Returns the array of integers containing mountainCat3 points
      */ 
     public static int[] getMountainC3() {
         return mountainCat3Points;
@@ -110,7 +171,7 @@ public class Stage {
     /**
      * A getter for the mountainC2 points
      * 
-     * @return Returns the array containing mountaincat2 points
+     * @return Returns the array of integers containing mountaincat2 points
      */
     public static int[] getMountainC2() {
         return mountainCat2Points;
@@ -119,7 +180,7 @@ public class Stage {
     /**
      * A getter for the mountainC1 points
      * 
-     * @return Returns the array containing mountainCat1 points
+     * @return Returns the array of integers containing mountainCat1 points
      */
     public static int[] getMountainC1() {
         return mountainCat1Points;
@@ -128,7 +189,7 @@ public class Stage {
     /**
      * A getter for the MountainHC points
      * 
-     * @return Returns the Array containing mountainHCpoints
+     * @return Returns the Array of integers containing mountainHCpoints
      */
     public static int[] getMountainHC() {
         return mountainHCPoints;
