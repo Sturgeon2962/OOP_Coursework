@@ -84,4 +84,10 @@ public class Race {
     public String getDescription() {
         return description;
     }
+
+    // Methods below this point
+    
+    public static void removeRace(Race raceToBeRemoved){
+        Race.races.remove(raceToBeRemoved);
+    }
 }

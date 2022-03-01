@@ -70,16 +70,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeRaceById(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
 		Race race = getRaceById(raceId);
-		
-
+		Race.removeRace(race);
 	}
 
 	@Override
 	public int getNumberOfStages(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return 0;
+		Race race = getRaceById(raceId);
+		return race.getStages().size();
+
 	}
 
 	@Override

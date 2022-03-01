@@ -46,6 +46,24 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
+		try {
+			portal.removeRaceById(1);
+		} catch (IDNotRecognisedException e1) {
+			System.out.println(e1.getMessage());
+		}
+
+		System.out.println(portal.getRaceIds());
+		try {
+			System.out.println(portal.viewRaceDetails(1));
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			System.out.println(portal.getStageLength(2));
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
