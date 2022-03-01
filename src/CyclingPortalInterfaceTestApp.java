@@ -93,7 +93,18 @@ public class CyclingPortalInterfaceTestApp {
 		try {
 			System.out.println(portal.getStageLength(1));
 		} catch (IDNotRecognisedException e) {
-			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			portal.removeStageById(3);
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		try {
+			System.out.println(portal.getStageLength(3));
+		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 	}
