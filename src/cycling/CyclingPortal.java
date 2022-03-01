@@ -36,6 +36,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	}
 
+	public Stage getStageById(int raceId, int stageId) throws IDNotRecognisedException {
+		for(Stage stage : getRaceById(raceId).getStages()) {
+			if(stage.getStageId() == stageId) {
+				return stage;
+			}
+		}
+		throw new IDNotRecognisedException("The Id does not exist");
+	}
+
 	@Override
 	public int[] getRaceIds() {
 		int[] raceIds = new int[Race.races.size()];
@@ -114,8 +123,19 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public double getStageLength(int stageId) throws IDNotRecognisedException {
-		
-		return 0;
+		Stage stage = null;
+		for(int raceId : getRaceIds()) {
+			try {
+				stage = getStageById(raceId, stageId);
+				break;
+			} catch (IDNotRecognisedException e) {
+				continue;
+			}
+		}
+		if(stage == null) {
+			throw new IDNotRecognisedException("this stage ID is not recognised");
+		}
+		return stage.getLength();
 	}
 
 	@Override
