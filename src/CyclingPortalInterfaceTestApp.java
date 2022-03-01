@@ -5,7 +5,11 @@ import cycling.CyclingPortalInterface;
 import cycling.IDNotRecognisedException;
 import cycling.IllegalNameException;
 import cycling.InvalidLengthException;
+import cycling.InvalidLocationException;
 import cycling.InvalidNameException;
+import cycling.InvalidStageStateException;
+import cycling.InvalidStageTypeException;
+import cycling.SegmentType;
 import cycling.StageType;
 
 /**
@@ -101,12 +105,30 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		// try {
-		// 	System.out.println(portal.getStageLength(3));
-		// } catch (IDNotRecognisedException e) {
-		// 	System.out.println(e.getMessage());
-		// }
+
+	
+		try {
+			portal.addCategorizedClimbToStage(5, 2.0, SegmentType.C1, 1.0, 0.5);
+		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
+				| InvalidStageTypeException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			portal.addIntermediateSprintToStage(5, 2.0);
+		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
+				| InvalidStageTypeException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			portal.removeSegment(5);
+		} catch (IDNotRecognisedException | InvalidStageStateException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }
