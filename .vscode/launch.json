@@ -9,6 +9,13 @@
             "name": "Launch CyclingPortalInterfaceTestApp",
             "request": "launch",
             "mainClass": "CyclingPortalInterfaceTestApp",
+            "projectName": "OOP_Coursework_ed51a382"
+        },
+        {
+            "type": "java",
+            "name": "Launch CyclingPortalInterfaceTestApp",
+            "request": "launch",
+            "mainClass": "CyclingPortalInterfaceTestApp",
             "projectName": "OOP_Coursework_1f2f57d0"
         },
         {

@@ -34,10 +34,8 @@ public class CyclingPortalInterfaceTestApp {
 			portal.createRace("Test4", "This is test race 4");
 
 		} catch (IllegalNameException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (InvalidNameException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
