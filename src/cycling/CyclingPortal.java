@@ -228,6 +228,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public void removeSegment(int segmentId) throws IDNotRecognisedException, InvalidStageStateException {
 		int stageId = getStageIdBySegmentId(segmentId);
+		checkValidStageState(false, stageId, "stage is already finished");
 		Stage stage = getStageById(stageId);
 		stage.removeSegmentById(segmentId);
 	}
