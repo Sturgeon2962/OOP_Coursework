@@ -29,6 +29,11 @@ public class CyclingPortalInterfaceTestApp {
 
 		try {
 			portal.createRace("Fuck_Josh", "This is a fucking test an i hop it works for josh sake");
+			portal.createRace("test", "This is test race 1");
+			portal.createRace("test2", "This is test race 2");
+			portal.createRace("test3", "This is test race 3");
+			portal.createRace("Test4", "This is test race 4");
+
 		} catch (IllegalNameException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
@@ -37,7 +42,9 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println(portal.getRaceIds().length);
+		System.out.println(portal.getRaceIds());
+		System.out.println(portal.viewRaceDetails(1));
+
 	}
 
 }
