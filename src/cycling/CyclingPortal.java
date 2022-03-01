@@ -61,24 +61,29 @@ public class CyclingPortal implements CyclingPortalInterface {
 	public Segment getSegmentbyId(int segmentId) throws IDNotRecognisedException {
 		for(Race race: Race.races){
 			for(Stage curStage: race.getStages()){
-				if(curStage.getSegments().contains(segmentId)){
-					return 	
-				}
-			}		
+				for(Segment segment: curStage.getSegments()){
+					if(segment.getSegmentId() == segmentId){
+						return segment;
+					}
+				}				
+			}
+		}
 		
-		
+		throw new IDNotRecognisedException("The ID was not found so may not exist");
 	}
 
 	public int getStageIdBySegmentId(int segmentId) throws IDNotRecognisedException {
 		for(Race race: Race.races){
 			for(Stage curStage: race.getStages()){
-				if(curStage.getSegments().contains(segmentId)){
-					
-				}
+				for(Segment segment: curStage.getSegments()){
+					if(segment.getSegmentId() == segmentId){
+						return curStage.getStageId();
+					}
+				}				
 			}
 		}
 		
-		throw new IDNotRecognisedException("The ID was not found so may not exist")
+		throw new IDNotRecognisedException("The ID was not found so may not exist");
 	}
 
 	public void checkValidStageState(boolean targetState, int stageId) throws InvalidStageStateException, IDNotRecognisedException {
