@@ -31,12 +31,10 @@ public class CyclingPortalInterfaceTestApp {
 		CyclingPortalInterface portal = new CyclingPortal();
 
 		try {
-			portal.createRace("Fuck_Josh", "This is a fucking test an i hop it works for josh sake");
-			portal.createRace("test", "This is test race 1");
-			portal.createRace("test2", "This is test race 2");
-			portal.createRace("test3", "This is test race 3");
-			portal.createRace("Test4", "This is test race 4");
-
+			int numOfStages = 5;
+			for(int x = 0; x<numOfStages; x++){
+				portal.createRace("Test"+x, "description Test"+x);
+			}
 			
 		} catch (IllegalNameException e) {
 			System.out.println(e.getMessage());
@@ -87,9 +85,7 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(portal.getRaceStages(3));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
-			
 		}
-
 	}
 	
 }
