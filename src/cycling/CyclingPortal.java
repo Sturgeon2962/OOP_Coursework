@@ -132,9 +132,6 @@ public class CyclingPortal implements CyclingPortalInterface {
 				continue;
 			}
 		}
-		if(stage == null) {
-			throw new IDNotRecognisedException("stage ID not recognised");
-		}
 		return stage.getLength();
 	}
 
