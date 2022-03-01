@@ -266,4 +266,8 @@ public class Stage {
         segments.remove(segmentId);
     }
 
+    public void addSegment(Segment segment){
+        segments.add(segment);
+    }
+
 }
