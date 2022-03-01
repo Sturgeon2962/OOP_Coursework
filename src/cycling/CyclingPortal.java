@@ -104,8 +104,12 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getRaceStages(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		int[] stageIds = new int[getNumberOfStages(raceId)];
+		Race race = getRaceById(raceId);
+		for(int i = 0; i < getNumberOfStages(raceId); i++){
+			stageIds[i] = race.getStages().get(i).getStageId();
+		}
+		return stageIds;
 	}
 
 	@Override
