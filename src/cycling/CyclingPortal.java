@@ -94,6 +94,12 @@ public class CyclingPortal implements CyclingPortalInterface {
 		}
 	}
 
+	public void checkValidStageState(boolean targetState, int stageId, String msg) throws IDNotRecognisedException, InvalidStageStateException {
+		if(targetState != getStageById(stageId).isFullyCreated()) {
+			throw new InvalidStageStateException(msg);
+		}
+	}
+
 	@Override
 	public int[] getRaceIds() {
 		int[] raceIds = new int[Race.races.size()];
@@ -190,7 +196,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		Stage stage = getStageById(stageId);
 		double stageLength = getStageLength(stageId);
 		checkValidLocation(stageLength, location);
-		checkValidStageState(false, stageId);
+		checkValidStageState(false, stageId, "stage already finished");
 		Climb newClimb = new Climb(location, type, averageGradient, length);
 		return 0;
 	}
