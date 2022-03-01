@@ -58,6 +58,22 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
+	public Segment getSegmentbyId(int segmentId) throws IDNotRecognisedException {
+		
+		
+		return null;
+	}
+
+	public int getStageIdBySegmentId(int segmentId){
+		Stage stage;
+		for(Race race: Race.races){
+			for(Stage curStage: race.getStages()){
+				
+			}
+		}
+		return 0
+	}
+
 	public void checkValidLocation(double stageLength, double location) throws InvalidLocationException {
 		if(location < 0) {
 			throw new InvalidLocationException("location can't be negitive");
