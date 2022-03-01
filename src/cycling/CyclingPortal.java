@@ -30,14 +30,16 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public int[] getRaceIds() {
 		// TODO Auto-generated method stub
-		
+		int[] raceIds = new int[Race.races.size()];
+		for(int i = 0; i < Race.races.size(); i++){
+			raceIds[i] = Race.races.get(i).getRaceID();
+		}
 
-		return null;
+		return raceIds;
 	}
 
 	@Override
 	public int createRace(String name, String description) throws IllegalNameException, InvalidNameException {
-		// TODO Auto-generated method stub
 		for(Race race:Race.races){
 			if(race.getName().equals(name)){
 				throw new IllegalNameException("Name in use");
@@ -52,7 +54,12 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public String viewRaceDetails(int raceId) throws IDNotRecognisedException {
 		// TODO Auto-generated method stub
-		return null;
+		for(Race race: Race.races){
+			if(race.getRaceID() == raceId){
+				return race.getDescription();
+			}
+		}
+		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
 	@Override
