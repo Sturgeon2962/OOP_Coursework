@@ -115,6 +115,13 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
+			try {
+				portal.concludeStagePreparation(5);
+			} catch (IDNotRecognisedException | InvalidStageStateException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}
+
 		try {
 			portal.addIntermediateSprintToStage(5, 2.0);
 		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
@@ -124,7 +131,7 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
-			portal.removeSegment(5);
+			portal.removeSegment(1);
 		} catch (IDNotRecognisedException | InvalidStageStateException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
