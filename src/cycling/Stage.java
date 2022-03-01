@@ -29,6 +29,7 @@ public class Stage {
     private double length;
     private LocalDateTime startTime;
     private int stageId;
+    private boolean fullyCreated = false;
     private static int nextId = 1;
 
     /**
