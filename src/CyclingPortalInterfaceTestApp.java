@@ -102,11 +102,11 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 		
-		try {
-			System.out.println(portal.getStageLength(3));
-		} catch (IDNotRecognisedException e) {
-			System.out.println(e.getMessage());
-		}
+		// try {
+		// 	System.out.println(portal.getStageLength(3));
+		// } catch (IDNotRecognisedException e) {
+		// 	System.out.println(e.getMessage());
+		// }
 	}
 	
 }
