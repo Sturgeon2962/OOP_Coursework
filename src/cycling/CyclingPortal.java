@@ -36,17 +36,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	}
 
-	public Stage getStageById(int stageId) throws IDNotRecognisedException {
-		for(int raceId : getRaceIds()) {
-			try {
-				for(Stage stage : getRaceById(raceId).getStages()) {
-					if(stage.getStageId() == stageId) {
-						return stage;
-					}
-				}
-				break;
-			} catch (IDNotRecognisedException e) {
-				continue;
+	public Stage getStageById(int raceId, int stageId) throws IDNotRecognisedException {
+		for(Stage stage : getRaceById(raceId).getStages()) {
+			if(stage.getStageId() == stageId) {
+				return stage;
 			}
 		}
 		throw new IDNotRecognisedException("The Id does not exist");
@@ -130,14 +123,33 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public double getStageLength(int stageId) throws IDNotRecognisedException {
-		Stage stage = getStageById(stageId);
+		Stage stage = null;
+		for(int raceId : getRaceIds()) {
+			try {
+				stage = getStageById(raceId, stageId);
+				break;
+			} catch (IDNotRecognisedException e) {
+				continue;
+			}
+		}
+		if(stage == null) {
+			throw new IDNotRecognisedException("stage ID not recognised");
+		}
 		return stage.getLength();
 	}
 
 	@Override
 	public void removeStageById(int stageId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-
+		Stage stage;
+		for(int raceId : getRaceIds()) {
+			try {
+				stage = getStageById(raceId, stageId);
+				getRaceById(raceId);
+				break;
+			} catch (IDNotRecognisedException e) {
+				continue;
+			}
+		}
 	}
 
 	@Override
