@@ -28,6 +28,8 @@ public class Stage {
     private String description;
     private double length;
     private LocalDateTime startTime;
+    private int stageId;
+    private static int nextId = 1;
 
     /**
      * Constructor to create a new stage
@@ -47,9 +49,18 @@ public class Stage {
         setStartTime(startTime);
         setCategory(category);
         segments = new ArrayList<Segment>();
+        setStageId(nextId++);
     }
 
     // Getters/Setters
+
+    public int getStageId() {
+        return stageId;
+    }
+
+    public void setStageId(int stageId) {
+        this.stageId = stageId;
+    }
 
     /**
      * A getter for the Flat sprin points

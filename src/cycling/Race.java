@@ -13,9 +13,9 @@ public class Race {
     private String description;
     private ArrayList<Stage> stages;
     private int raceID;
-
+    
     // static attributes
-    public static int nextRaceID = 1;
+    private static int nextRaceID = 1;
     public static ArrayList<Race> races = new ArrayList<Race>();
 
     /**
@@ -76,6 +76,7 @@ public class Race {
         return stages;
     }
 
+
     /**
      * The method gets the description of the race
      * 
@@ -89,5 +90,9 @@ public class Race {
     
     public static void removeRace(Race raceToBeRemoved){
         Race.races.remove(raceToBeRemoved);
+    }
+
+    public void addStage(Stage newStage){
+        getStages().add(newStage);
     }
 }

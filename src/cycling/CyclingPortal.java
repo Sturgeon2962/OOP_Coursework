@@ -86,8 +86,20 @@ public class CyclingPortal implements CyclingPortalInterface {
 	public int addStageToRace(int raceId, String stageName, String description, double length, LocalDateTime startTime,
 			StageType type)
 			throws IDNotRecognisedException, IllegalNameException, InvalidNameException, InvalidLengthException {
-		// TODO Auto-generated method stub
-		return 0;
+		isInvalidName(stageName);
+		Race race = getRaceById(raceId);
+		for(Stage stage:race.getStages()){
+			if(stage.getName().equals(stageName)){
+				throw new IllegalNameException("Name in use");
+			}
+		}
+		if(length < 5 ){
+			throw new InvalidLengthException("Stage too short");
+		}
+		Stage newStage = new Stage(stageName, description, length, startTime, type);
+		race.addStage(newStage); 
+		
+		return newStage.getStageId();
 	}
 
 	@Override
