@@ -100,6 +100,18 @@ public class CyclingPortal implements CyclingPortalInterface {
 		}
 	}
 
+	public void checkValidCreateSegment(int stageId, double location) throws InvalidLocationException, InvalidStageStateException, IDNotRecognisedException {
+		checkValidLocation(getStageLength(stageId), location);
+		checkValidStageState(false, stageId, "stage already finished");
+	}
+
+	public boolean isClimb(SegmentType type) {
+		if(type == SegmentType.SPRINT) {
+			return false;
+		}
+		return true;
+	}
+
 	@Override
 	public int[] getRaceIds() {
 		int[] raceIds = new int[Race.races.size()];
@@ -194,18 +206,23 @@ public class CyclingPortal implements CyclingPortalInterface {
 			Double length) throws IDNotRecognisedException, InvalidLocationException, InvalidStageStateException,
 			InvalidStageTypeException {
 		Stage stage = getStageById(stageId);
-		double stageLength = getStageLength(stageId);
-		checkValidLocation(stageLength, location);
-		checkValidStageState(false, stageId, "stage already finished");
+		checkValidCreateSegment(stageId, location);
+		if(!isClimb(type)) {
+			throw new InvalidStageTypeException("Cannot create climb with type SPRINT");
+		}
 		Climb newClimb = new Climb(location, type, averageGradient, length);
+		stage.addSegment(newClimb);
 		return newClimb.getSegmentId();
 	}
 
 	@Override
 	public int addIntermediateSprintToStage(int stageId, double location) throws IDNotRecognisedException,
 			InvalidLocationException, InvalidStageStateException, InvalidStageTypeException {
-		// TODO Auto-generated method stub
-		return 0;
+		Stage stage = getStageById(stageId);
+		checkValidCreateSegment(stageId, location);
+		IntermediateSprint newSprint = new IntermediateSprint(location);
+		stage.addSegment(newSprint);
+		return newSprint.getSegmentId();
 	}
 
 	@Override
