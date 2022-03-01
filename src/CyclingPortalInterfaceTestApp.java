@@ -31,8 +31,8 @@ public class CyclingPortalInterfaceTestApp {
 		CyclingPortalInterface portal = new CyclingPortal();
 
 		try {
-			int numOfStages = 5;
-			for(int x = 0; x<numOfStages; x++){
+			int numOfRaces = 5;
+			for(int x = 0; x<numOfRaces; x++){
 				portal.createRace("Test"+x, "description Test"+x);
 			}
 			
@@ -69,7 +69,10 @@ public class CyclingPortalInterfaceTestApp {
 		}
 		
 		try {
-			portal.addStageToRace(3, "test1", "test1", 6, LocalDateTime.of(2022, 10, 10, 0, 0), StageType.FLAT);
+			int numOfStages = 5;
+			for(int x = 0; x<numOfStages; x++){
+				portal.addStageToRace(3, "test"+x, "test"+x, 6, LocalDateTime.of(2022, 10, 10, 0, 0), StageType.FLAT);
+			}
 		} catch (IDNotRecognisedException | IllegalNameException | InvalidNameException
 		| InvalidLengthException e) {
 			System.out.println(e.getMessage());
