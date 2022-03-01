@@ -55,6 +55,14 @@ public class Stage {
 
     // Getters/Setters
 
+    public boolean isFullyCreated() {
+        return fullyCreated;
+    }
+
+    public void setFullyCreated(boolean fullyCreated) {
+        this.fullyCreated = fullyCreated;
+    }
+
     public int getStageId() {
         return stageId;
     }
