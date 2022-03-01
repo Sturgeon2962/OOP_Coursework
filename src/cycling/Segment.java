@@ -10,6 +10,8 @@ public abstract class Segment {
     // Non-Static Attributes
     private SegmentType type;
     private double location;
+    private int segmentId;
+    private int nextSegmentId = 1;
     
     /**
      * Constructor for a Segment.
@@ -22,8 +24,17 @@ public abstract class Segment {
     public Segment(double location, SegmentType type) {
         this.setLocation(location);
         this.setType(type);
+        setSegmentId(nextSegmentId++);
     }
     
+    public int getSegmentId() {
+        return segmentId;
+    }
+
+    public void setSegmentId(int segmentId) {
+        this.segmentId = segmentId;
+    }
+
     /**
      * The method gets the location of the segment.
      * 
