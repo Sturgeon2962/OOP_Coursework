@@ -58,6 +58,14 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
+	public void checkValidLocation(double stageLength, double location) throws InvalidLocationException {
+		if(location < 0) {
+			throw new InvalidLocationException("location can't be negitive");
+		} else if(location > stageLength) {
+			throw new InvalidLocationException("location can't be after the end of the stage");
+		}
+	}
+
 	@Override
 	public int[] getRaceIds() {
 		int[] raceIds = new int[Race.races.size()];
@@ -153,6 +161,8 @@ public class CyclingPortal implements CyclingPortalInterface {
 			InvalidStageTypeException {
 		Stage stage = getStageById(stageId);
 		Race race = getRaceById(getRaceIdByStageId(stageId));
+		double stageLength = getStageLength(stageId);
+		checkValidLocation(stageLength, location);
 		return 0;
 	}
 
