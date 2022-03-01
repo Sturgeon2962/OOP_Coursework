@@ -55,6 +55,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	public String viewRaceDetails(int raceId) throws IDNotRecognisedException {
 		for(Race race : Race.races){
 			if(race.getRaceID() == raceId){
+				System.out.println(race.getDescription());
 				return race.getDescription();
 			}
 		}
