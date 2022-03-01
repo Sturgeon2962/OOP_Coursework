@@ -144,7 +144,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		for(int raceId : getRaceIds()) {
 			try {
 				stage = getStageById(raceId, stageId);
-				getRaceById(raceId);
+				getRaceById(raceId).removeStage(stage);
 				break;
 			} catch (IDNotRecognisedException e) {
 				continue;
