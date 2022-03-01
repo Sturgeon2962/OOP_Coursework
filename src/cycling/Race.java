@@ -95,4 +95,8 @@ public class Race {
     public void addStage(Stage newStage){
         getStages().add(newStage);
     }
+
+    public void removeStage(Stage stage){
+        getStages().remove(stage);
+    }
 }

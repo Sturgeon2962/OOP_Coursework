@@ -89,6 +89,13 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
+
+		try {
+			System.out.println(portal.getStageLength(1));
+		} catch (IDNotRecognisedException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }
