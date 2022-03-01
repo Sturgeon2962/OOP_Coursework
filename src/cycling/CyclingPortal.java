@@ -210,8 +210,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeSegment(int segmentId) throws IDNotRecognisedException, InvalidStageStateException {
-		// TODO Auto-generated method stub
-
+		int stageId = getStageIdBySegmentId(segmentId);
+		Stage stage = getStageById(stageId);
+		stage.removeSegmentById(segmentId);
 	}
 
 	@Override
