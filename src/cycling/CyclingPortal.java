@@ -198,7 +198,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		checkValidLocation(stageLength, location);
 		checkValidStageState(false, stageId, "stage already finished");
 		Climb newClimb = new Climb(location, type, averageGradient, length);
-		return 0;
+		return newClimb.getSegmentId();
 	}
 
 	@Override
