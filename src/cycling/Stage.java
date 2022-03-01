@@ -254,6 +254,8 @@ public class Stage {
         return mountainHCPoints;
     }
 
-    // Add segment
+    public void removeSegmentById(int segmentId){
+        segments.remove(segmentId);
+    }
 
 }
