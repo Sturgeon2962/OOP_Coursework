@@ -22,14 +22,21 @@ public class CyclingPortal implements CyclingPortalInterface {
 		if(name.contains(" ")){
 			throw new InvalidNameException("Name is more than 1 word");
 		}
-		//check if string is too long - what is system limit of characters?
+		//check if string is too long - what is system limit of characters?	
+	}
 
-		
+	public Race getRaceById(int raceId) throws IDNotRecognisedException{
+		for(Race race : Race.races){
+			if(race.getRaceID() == raceId){
+				return race;
+			}
+		}
+		throw new IDNotRecognisedException("The Id does not exist");
+
 	}
 
 	@Override
 	public int[] getRaceIds() {
-		// TODO Auto-generated method stub
 		int[] raceIds = new int[Race.races.size()];
 		for(int i = 0; i < Race.races.size(); i++){
 			raceIds[i] = Race.races.get(i).getRaceID();
@@ -55,7 +62,6 @@ public class CyclingPortal implements CyclingPortalInterface {
 	public String viewRaceDetails(int raceId) throws IDNotRecognisedException {
 		for(Race race : Race.races){
 			if(race.getRaceID() == raceId){
-				System.out.println(race.getDescription());
 				return race.getDescription();
 			}
 		}
@@ -65,6 +71,8 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public void removeRaceById(int raceId) throws IDNotRecognisedException {
 		// TODO Auto-generated method stub
+		Race race = getRaceById(raceId);
+		
 
 	}
 

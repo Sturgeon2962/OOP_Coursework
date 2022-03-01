@@ -26,7 +26,7 @@ public class Race {
      */
     public Race(String name, String descripion) {
         setName(name);
-        setDescription(description);
+        setDescription(descripion);
         stages = new ArrayList<Stage>();
         raceID = nextRaceID++;
     }
