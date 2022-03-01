@@ -53,7 +53,6 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public String viewRaceDetails(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
 		for(Race race: Race.races){
 			if(race.getRaceID() == raceId){
 				return race.getDescription();
