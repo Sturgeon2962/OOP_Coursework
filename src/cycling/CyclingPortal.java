@@ -189,10 +189,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 			Double length) throws IDNotRecognisedException, InvalidLocationException, InvalidStageStateException,
 			InvalidStageTypeException {
 		Stage stage = getStageById(stageId);
-		Race race = getRaceById(getRaceIdByStageId(stageId));
 		double stageLength = getStageLength(stageId);
 		checkValidLocation(stageLength, location);
 		checkValidStageState(false, stageId);
+		Climb newClimb = new Climb(location, type, averageGradient, length);
 		return 0;
 	}
 
