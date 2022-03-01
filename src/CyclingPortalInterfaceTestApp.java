@@ -1,9 +1,8 @@
 import cycling.CyclingPortal;
-import cycling.BadMiniCyclingPortal;
 import cycling.CyclingPortalInterface;
+import cycling.IDNotRecognisedException;
 import cycling.IllegalNameException;
 import cycling.InvalidNameException;
-import cycling.MiniCyclingPortalInterface;
 
 /**
  * A short program to illustrate an app testing some minimal functionality of a
@@ -43,7 +42,11 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		System.out.println(portal.getRaceIds());
-		System.out.println(portal.viewRaceDetails(1));
+		try {
+			System.out.println(portal.viewRaceDetails(1));
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 

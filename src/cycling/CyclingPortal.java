@@ -53,7 +53,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public String viewRaceDetails(int raceId) throws IDNotRecognisedException {
-		for(Race race: Race.races){
+		for(Race race : Race.races){
 			if(race.getRaceID() == raceId){
 				return race.getDescription();
 			}
