@@ -11,6 +11,7 @@ import cycling.InvalidLocationException;
 import cycling.InvalidNameException;
 import cycling.InvalidStageStateException;
 import cycling.InvalidStageTypeException;
+import cycling.Segment;
 import cycling.SegmentType;
 import cycling.StageType;
 
@@ -139,7 +140,7 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
-			portal.removeSegment(segmentIds.get(0));
+			portal.removeSegment(segmentIds.get(1));
 		} catch (IDNotRecognisedException | InvalidStageStateException e) {
 			System.out.println(e.getMessage());
 		}
