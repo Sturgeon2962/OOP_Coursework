@@ -121,9 +121,9 @@ public class Team {
                     }
                 }
             }
+            teamId = newId;
+            usedId.add(newId);
         }
-        teamId = newId;
-        usedId.add(newId);
     }
 
 }

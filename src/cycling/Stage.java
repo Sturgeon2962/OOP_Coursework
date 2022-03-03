@@ -1,6 +1,7 @@
 package cycling;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
@@ -33,7 +34,8 @@ public class Stage {
     private int stageId;
     private boolean fullyCreated = false;
     private static final int MAXSTAGEID = 2000000;
-    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
+    private static ArrayList<Integer> usedId = new ArrayList<Integer>(Arrays.asList(-1));
+    
 
     /**
      * Constructor to create a new stage
@@ -74,8 +76,7 @@ public class Stage {
         Random rand = new Random();
         boolean uniqueId = false;
         int newId = rand.nextInt(MAXSTAGEID);
-
-        if(usedId == null){
+        if(usedId.size() == 0){
             stageId = newId;
             usedId.add(newId);   
         }else{
@@ -89,9 +90,9 @@ public class Stage {
                     }
                 }
             }
+            stageId = newId;
+            usedId.add(newId);
         }
-        stageId = newId;
-        usedId.add(newId);
     }
     /**
      * A getter for the Flat sprin points

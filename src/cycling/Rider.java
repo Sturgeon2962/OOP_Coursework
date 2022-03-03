@@ -100,10 +100,9 @@ public class Rider {
                     }
                 }
             }
+            riderId = newId;
+            usedId.add(newId);
         }
-
-        riderId = newId;
-        usedId.add(newId);
     }
 
 

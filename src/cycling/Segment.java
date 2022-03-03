@@ -55,9 +55,9 @@ public abstract class Segment {
                     }
                 }
             }
+            segmentId = newId;
+            usedId.add(newId);
         }
-        segmentId = newId;
-        usedId.add(newId);
     }
 
     /**
