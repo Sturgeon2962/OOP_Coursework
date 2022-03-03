@@ -16,6 +16,7 @@ public class Team {
 
     // Static Team Attributes
     public static int nextTeamId = 1;
+    public static ArrayList<Team> teams = new ArrayList<Team>();
     /*
     Could be better to use random IDs
     Between 0 and Integer.maxValue or similar
@@ -93,6 +94,10 @@ public class Team {
      */
     public void createRider(String name, int yearOfBirth){
         teamMembers.add(new Rider(teamId, name, yearOfBirth));
+    }
+
+    public int getId() {
+        return this.teamId;
     }
 
 }

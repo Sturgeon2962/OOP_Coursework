@@ -254,9 +254,16 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int createTeam(String name, String description) throws IllegalNameException, InvalidNameException {
-		// TODO Auto-generated method stub
+		for(Team team : Team.teams) {
+			if(team.getTeamName().equals(name)) {
+				throw new IllegalNameException("name in use");
+			}
+		}
+		isInvalidName(name);
+
+		Team newTeam = new Team(name, description);
 		
-		return 0;
+		return newTeam.getId();
 	}
 
 	@Override
