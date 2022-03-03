@@ -73,6 +73,7 @@ public class Stage {
     }
 
     private void setStageId(){
+        System.out.println("Id Set");
         Random rand = new Random();
         boolean uniqueId = false;
         int newId = rand.nextInt(MAXSTAGEID);
