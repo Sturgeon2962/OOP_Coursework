@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -242,8 +243,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getStageSegments(int stageId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Segment> segments = getStageById(stageId).getSegments();
+		int numSegments = segments.size();
+		int[] segmentIds = new int[numSegments];
+		for(int i = 0; i < numSegments; i++) {
+			segmentIds[i] = segments.get(i).getSegmentId();
+		}
+		return segmentIds;
 	}
 
 	@Override

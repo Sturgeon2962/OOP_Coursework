@@ -1,6 +1,7 @@
 package cycling;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A class to represent a stage of a race
@@ -268,6 +269,9 @@ public class Stage {
 
     public void addSegment(Segment segment){
         segments.add(segment);
+
+        // Order segments by location from start
+        Collections.sort(segments, Segment.compareByLocation);
     }
 
 }

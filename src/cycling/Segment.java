@@ -1,5 +1,7 @@
 package cycling;
 
+import java.util.Comparator;
+
 /**
  * This abstract class is used to represent a segment within a stage.
  * 
@@ -11,7 +13,7 @@ public abstract class Segment {
     private SegmentType type;
     private double location;
     private int segmentId;
-    private int nextSegmentId = 1;
+    private static int nextSegmentId = 1;
     
     /**
      * Constructor for a Segment.
@@ -76,4 +78,13 @@ public abstract class Segment {
     }
 
     // Any other methods
+    // Location comparator
+    public static Comparator<Segment> compareByLocation = new Comparator<Segment>() {
+
+        @Override
+        public int compare(Segment segment1, Segment segment2) {
+            return Double.compare(segment1.getLocation(), segment2.getLocation());
+        }
+        
+    };
 }
