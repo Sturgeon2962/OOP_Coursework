@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import cycling.CyclingPortal;
 import cycling.CyclingPortalInterface;
@@ -35,10 +36,11 @@ public class CyclingPortalInterfaceTestApp {
 
 		CyclingPortalInterface portal = new CyclingPortal();
 
+		int[] stageIds = new int[5];
 		try {
 			int numOfRaces = 5;
 			for(int x = 0; x<numOfRaces; x++){
-				portal.createRace("Test"+x, "description Test"+x);
+				stageIds[x] =  portal.createRace("Test"+x, "description Test"+x);
 			}
 		} catch (IllegalNameException e) {
 			System.out.println(e.getMessage());
@@ -48,26 +50,26 @@ public class CyclingPortalInterfaceTestApp {
 		
 		System.out.println(portal.getRaceIds());
 		try {
-			System.out.println(portal.viewRaceDetails(1));
+			System.out.println(portal.viewRaceDetails(stageIds[0]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 		
 		try {
-			portal.removeRaceById(1);
+			portal.removeRaceById(stageIds[0]);
 		} catch (IDNotRecognisedException e1) {
 			System.out.println(e1.getMessage());
 		}
 		
 		System.out.println(portal.getRaceIds());
 		try {
-			System.out.println(portal.viewRaceDetails(1));
+			System.out.println(portal.viewRaceDetails(stageIds[0]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 		
 		try {
-			System.out.println(portal.getNumberOfStages(2));
+			System.out.println(portal.getNumberOfStages(stageIds[1]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -75,7 +77,7 @@ public class CyclingPortalInterfaceTestApp {
 		try {
 			int numOfStages = 5;
 			for(int x = 0; x<numOfStages; x++){
-				portal.addStageToRace(3, "test"+x, "test"+x, 10, LocalDateTime.of(2022, 10, 10, 0, 0), StageType.FLAT);
+				portal.addStageToRace(stageIds[2], "test"+x, "test"+x, 10, LocalDateTime.of(2022, 10, 10, 0, 0), StageType.FLAT);
 			}
 		} catch (IDNotRecognisedException | IllegalNameException | InvalidNameException
 		| InvalidLengthException e) {
@@ -83,46 +85,47 @@ public class CyclingPortalInterfaceTestApp {
 		}
 		
 		try {
-			System.out.println(portal.getNumberOfStages(3));
+			System.out.println(portal.getNumberOfStages(stageIds[2]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 		
 		try {
-			System.out.println(portal.getRaceStages(3));
+			System.out.println(portal.getRaceStages(stageIds[2]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 
 		try {
-			System.out.println(portal.getStageLength(1));
+			System.out.println(portal.getStageLength(stageIds[2]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 
 		try {
-			portal.removeStageById(3);
+			portal.removeStageById(stageIds[2]);
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 
-	
+
+		ArrayList<Integer> segmentIds = new ArrayList<Integer>();
 		try {
-			portal.addCategorizedClimbToStage(5, 6.0, SegmentType.C1, 1.0, 0.5);
+			segmentIds.add(portal.addCategorizedClimbToStage(stageIds[4], 6.0, SegmentType.C1, 1.0, 0.5));
 		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
 				| InvalidStageTypeException e) {
 			System.out.println(e.getMessage());
 		}
 
 		try {
-			portal.addIntermediateSprintToStage(5, 2.0);
+			segmentIds.add( portal.addIntermediateSprintToStage(stageIds[4], 2.0));
 		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
 				| InvalidStageTypeException e) {
 			System.out.println(e.getMessage());
 		}
 		
 		try {
-			portal.addIntermediateSprintToStage(5, 6.5);
+			segmentIds.add( portal.addIntermediateSprintToStage(stageIds[4], 6.5));
 		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
 				| InvalidStageTypeException e) {
 			System.out.println(e.getMessage());
@@ -130,20 +133,20 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
-			portal.concludeStagePreparation(5);
+			portal.concludeStagePreparation(stageIds[4]);
 		} catch (IDNotRecognisedException | InvalidStageStateException e) {
 			System.out.println(e.getMessage());
 		}
 
 		try {
-			portal.removeSegment(1);
+			portal.removeSegment(segmentIds.get(0));
 		} catch (IDNotRecognisedException | InvalidStageStateException e) {
 			System.out.println(e.getMessage());
 		}
 
 		int[] test;
 		try {
-			test = portal.getStageSegments(5);
+			test = portal.getStageSegments(stageIds[4]);
 			for(int x : test) {
 				System.out.print(x + " ");
 			}
