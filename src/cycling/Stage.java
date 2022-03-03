@@ -33,7 +33,7 @@ public class Stage {
     private int stageId;
     private boolean fullyCreated = false;
     private static final int MAXSTAGEID = 2000000;
-    private static ArrayList<Integer> usedId;
+    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
 
     /**
      * Constructor to create a new stage
@@ -75,17 +75,21 @@ public class Stage {
         boolean uniqueId = false;
         int newId = rand.nextInt(MAXSTAGEID);
 
-        while(uniqueId != true){
-            newId = rand.nextInt(MAXSTAGEID);
-            uniqueId = true;
-            for(int id : usedId ){
-                if(id == newId){
-                    uniqueId = false;
-                    break;
+        if(usedId == null){
+            stageId = newId;
+            usedId.add(newId);   
+        }else{
+            while(uniqueId != true){
+                newId = rand.nextInt(MAXSTAGEID);
+                uniqueId = true;
+                for(int id : usedId ){
+                    if(id == newId){
+                        uniqueId = false;
+                        break;
+                    }
                 }
             }
         }
-
         stageId = newId;
         usedId.add(newId);
     }

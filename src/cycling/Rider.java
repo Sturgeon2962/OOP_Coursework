@@ -18,7 +18,7 @@ public class Rider {
 
     // Static Rider Attributes
     public static final int MAXRIDERID = 2000000;
-    public static ArrayList<Integer> usedId;
+    public static ArrayList<Integer> usedId = new ArrayList<Integer>();
 
     /**
      * Constructor for a rider, This should mainly be called from the team method createRider {@link #createRider()}
@@ -85,13 +85,19 @@ public class Rider {
         Random rand = new Random();
         boolean uniqueId = false;
         int newId = rand.nextInt(MAXRIDERID);
-        while(uniqueId != true){
-            newId = rand.nextInt(MAXRIDERID);
-            uniqueId = true;
-            for(int id : usedId ){
-                if(id == newId){
-                    uniqueId = false;
-                    break;
+        
+        if(usedId == null){
+            riderId = newId;
+            usedId.add(newId);   
+        }else{
+            while(uniqueId != true){
+                newId = rand.nextInt(MAXRIDERID);
+                uniqueId = true;
+                for(int id : usedId ){
+                    if(id == newId){
+                        uniqueId = false;
+                        break;
+                    }
                 }
             }
         }

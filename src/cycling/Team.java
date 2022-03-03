@@ -18,7 +18,7 @@ public class Team {
     // Static Team Attributes
     public static final int MAXTEAMID = 2000000;
     public static ArrayList<Team> teams = new ArrayList<Team>();
-    public static ArrayList<Integer> usedId;
+    public static ArrayList<Integer> usedId = new ArrayList<Integer>();
     /*
     Could be better to use random IDs
     Between 0 and Integer.maxValue or similar
@@ -107,17 +107,21 @@ public class Team {
         boolean uniqueId = false;
         int newId = rand.nextInt(MAXTEAMID);
 
-        while(uniqueId != true){
-            newId = rand.nextInt(MAXTEAMID);
-            uniqueId = true;
-            for(int id : usedId ){
-                if(id == newId){
-                    uniqueId = false;
-                    break;
+        if(usedId == null){
+            teamId = newId;
+            usedId.add(newId);   
+        }else{
+            while(uniqueId != true){
+                newId = rand.nextInt(MAXTEAMID);
+                uniqueId = true;
+                for(int id : usedId ){
+                    if(id == newId){
+                        uniqueId = false;
+                        break;
+                    }
                 }
             }
         }
-
         teamId = newId;
         usedId.add(newId);
     }

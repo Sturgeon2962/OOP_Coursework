@@ -16,7 +16,7 @@ public abstract class Segment {
     private double location;
     private int segmentId;
     private static int maxSegmentId = 2000000;
-    private static ArrayList<Integer> usedId;
+    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
     
     /**
      * Constructor for a Segment.
@@ -41,17 +41,21 @@ public abstract class Segment {
         boolean uniqueId = false;
         int newId = rand.nextInt(maxSegmentId);
 
-        while(uniqueId != true){
-            newId = rand.nextInt(maxSegmentId);
-            uniqueId = true;
-            for(int id : usedId ){
-                if(id == newId){
-                    uniqueId = false;
-                    break;
+        if(usedId == null){
+            segmentId = newId;
+            usedId.add(newId);   
+        }else{
+            while(uniqueId != true){
+                newId = rand.nextInt(maxSegmentId);
+                uniqueId = true;
+                for(int id : usedId ){
+                    if(id == newId){
+                        uniqueId = false;
+                        break;
+                    }
                 }
             }
         }
-
         segmentId = newId;
         usedId.add(newId);
     }
