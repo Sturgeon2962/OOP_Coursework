@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class CyclingPortal implements CyclingPortalInterface {
 
-	public void isInvalidName(String name) throws InvalidNameException{
+	private void isInvalidName(String name) throws InvalidNameException{
 
 		if(name.equals(null) || name.equals("")){
 			throw new InvalidNameException("name is empty or null");
@@ -26,7 +26,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		//check if string is too long - what is system limit of characters?	
 	}
 
-	public Race getRaceById(int raceId) throws IDNotRecognisedException{
+	private Race getRaceById(int raceId) throws IDNotRecognisedException{
 		for(Race race : Race.races){
 			if(race.getRaceID() == raceId){
 				return race;
@@ -36,7 +36,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	}
 
-	public Stage getStageById(int stageId) throws IDNotRecognisedException {
+	private Stage getStageById(int stageId) throws IDNotRecognisedException {
 		for(int raceId : getRaceIds()) {
 			for(Stage stage : getRaceById(raceId).getStages()) {
 				if(stage.getStageId() == stageId) {
@@ -47,7 +47,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
-	public int getRaceIdByStageId(int stageId) throws IDNotRecognisedException {
+	private int getRaceIdByStageId(int stageId) throws IDNotRecognisedException {
 		for(int raceId : getRaceIds()) {
 			for(Stage stage : getRaceById(raceId).getStages()) {
 				if(stage.getStageId() == stageId) {
@@ -58,7 +58,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
-	public Segment getSegmentbyId(int segmentId) throws IDNotRecognisedException {
+	private Segment getSegmentbyId(int segmentId) throws IDNotRecognisedException {
 		for(Race race: Race.races){
 			for(Stage curStage: race.getStages()){
 				for(Segment segment: curStage.getSegments()){
@@ -72,7 +72,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The ID was not found so may not exist");
 	}
 
-	public int getStageIdBySegmentId(int segmentId) throws IDNotRecognisedException {
+	private int getStageIdBySegmentId(int segmentId) throws IDNotRecognisedException {
 		for(Race race: Race.races){
 			for(Stage curStage: race.getStages()){
 				for(Segment segment: curStage.getSegments()){
@@ -86,7 +86,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The ID was not found so may not exist");
 	}
 
-	public void checkValidLocation(double stageLength, double location) throws InvalidLocationException {
+	private void checkValidLocation(double stageLength, double location) throws InvalidLocationException {
 		if(location < 0) {
 			throw new InvalidLocationException("location can't be negitive");
 		} else if(location > stageLength) {
@@ -94,18 +94,18 @@ public class CyclingPortal implements CyclingPortalInterface {
 		}
 	}
 
-	public void checkValidStageState(boolean targetState, int stageId, String msg) throws IDNotRecognisedException, InvalidStageStateException {
+	private void checkValidStageState(boolean targetState, int stageId, String msg) throws IDNotRecognisedException, InvalidStageStateException {
 		if(targetState != getStageById(stageId).isFullyCreated()) {
 			throw new InvalidStageStateException(msg);
 		}
 	}
 
-	public void checkValidCreateSegment(int stageId, double location) throws InvalidLocationException, InvalidStageStateException, IDNotRecognisedException {
+	private void checkValidCreateSegment(int stageId, double location) throws InvalidLocationException, InvalidStageStateException, IDNotRecognisedException {
 		checkValidLocation(getStageLength(stageId), location);
 		checkValidStageState(false, stageId, "stage already finished");
 	}
 
-	public boolean isClimb(SegmentType type) {
+	private boolean isClimb(SegmentType type) {
 		if(type == SegmentType.SPRINT) {
 			return false;
 		}
