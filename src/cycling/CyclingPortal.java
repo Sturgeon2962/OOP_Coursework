@@ -236,6 +236,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public void concludeStagePreparation(int stageId) throws IDNotRecognisedException, InvalidStageStateException {
 		Stage stage = getStageById(stageId);
+		checkValidStageState(false, stageId, "msg");
 		stage.setFullyCreated(true);
 	}
 
