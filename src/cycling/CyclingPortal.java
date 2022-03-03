@@ -191,6 +191,12 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public double getStageLength(int stageId) throws IDNotRecognisedException {
+		System.out.println("\n" + stageId + "\n");
+		for (Race race : Race.races) {
+			for (Stage stage : race.getStages()) {
+				System.out.println(stage.getStageId());
+			}
+		}
 		return getStageById(stageId).getLength();
 	}
 

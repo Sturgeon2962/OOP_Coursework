@@ -98,6 +98,9 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
+			for (int x : stageIds) {
+				System.out.println(x);
+			}
 			System.out.println(portal.getStageLength(stageIds[2]));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());

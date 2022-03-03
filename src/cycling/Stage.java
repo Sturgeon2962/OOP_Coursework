@@ -34,7 +34,7 @@ public class Stage {
     private int stageId;
     private boolean fullyCreated = false;
     private static final int MAXSTAGEID = 2000000;
-    private static ArrayList<Integer> usedId = new ArrayList<Integer>(Arrays.asList(-1));
+    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
     
 
     /**
