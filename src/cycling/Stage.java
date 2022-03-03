@@ -79,7 +79,9 @@ public class Stage {
         int newId = rand.nextInt(MAXSTAGEID);
         if(usedId.size() == 0){
             stageId = newId;
-            usedId.add(newId);   
+            usedId.add(newId);
+            System.out.println("Id Set1");
+
         }else{
             while(uniqueId != true){
                 newId = rand.nextInt(MAXSTAGEID);
@@ -91,6 +93,8 @@ public class Stage {
                     }
                 }
             }
+            System.out.println("Id Set2");
+
             stageId = newId;
             usedId.add(newId);
         }
