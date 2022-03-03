@@ -1,5 +1,8 @@
 package cycling;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * A class to represent a riders in a race
  * 
@@ -14,7 +17,8 @@ public class Rider {
     private int yearOfBirth;
 
     // Static Rider Attributes
-    public static int nextRiderId = 1;
+    public static final int MAXRIDERID = 2000000;
+    public static ArrayList<Integer> usedId;
 
     /**
      * Constructor for a rider, This should mainly be called from the team method createRider {@link #createRider()}
@@ -27,7 +31,7 @@ public class Rider {
         setName(name);
         setTeamId(teamId);
         setYearOfBirth(yearOfBirth);
-        riderId = nextRiderId++;
+        setRiderId();
     }
 
     // Getters and setter for all attributes
@@ -76,6 +80,26 @@ public class Rider {
     public int getRiderId() {
         return riderId;
     }
+
+    public void setRiderId(){
+        Random rand = new Random();
+        boolean uniqueId = false;
+        int newId = rand.nextInt(MAXRIDERID);
+        while(uniqueId != true){
+            newId = rand.nextInt(MAXRIDERID);
+            uniqueId = true;
+            for(int id : usedId ){
+                if(id == newId){
+                    uniqueId = false;
+                    break;
+                }
+            }
+        }
+
+        riderId = newId;
+        usedId.add(newId);
+    }
+
 
     /**
      * A getter for the Rider's Name

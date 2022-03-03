@@ -1,5 +1,6 @@
 package cycling;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A class to represent a race containing stages and teams of riders.
@@ -15,8 +16,9 @@ public class Race {
     private int raceID;
     
     // static attributes
-    private static int nextRaceID = 1;
+    private static final int MAXRACEID = 2000000;
     public static ArrayList<Race> races = new ArrayList<Race>();
+    
 
     /**
      * The constructor to create a race
@@ -28,7 +30,7 @@ public class Race {
         setName(name);
         setDescription(descripion);
         stages = new ArrayList<Stage>();
-        raceID = nextRaceID++;
+        setRaceId();
     }
 
     /**
@@ -86,6 +88,23 @@ public class Race {
         return description;
     }
 
+    private void setRaceId(){
+        Random rand = new Random();
+        boolean uniqueId = false;
+        int newId = rand.nextInt(MAXRACEID);
+        
+        while(uniqueId != true){
+            newId = rand.nextInt(MAXRACEID);
+            uniqueId = true;
+            for (Race race: races){
+                if(race.getRaceID() == newId){
+                    uniqueId = false;
+                    break;
+                }
+            }
+        }
+        raceID = newId;
+    }
     // Methods below this point
     
     public static void removeRace(Race raceToBeRemoved){

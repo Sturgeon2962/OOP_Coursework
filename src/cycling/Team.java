@@ -1,5 +1,6 @@
 package cycling;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A class to create teams and allocate team members 
@@ -15,8 +16,9 @@ public class Team {
     private int teamId;
 
     // Static Team Attributes
-    public static int nextTeamId = 1;
+    public static final int MAXTEAMID = 2000000;
     public static ArrayList<Team> teams = new ArrayList<Team>();
+    public static ArrayList<Integer> usedId;
     /*
     Could be better to use random IDs
     Between 0 and Integer.maxValue or similar
@@ -34,7 +36,7 @@ public class Team {
     public Team (String name, String description){
         setTeamName(name);
         setTeamDescription(description);
-        teamId = nextTeamId++;
+        setTeamId();
         teamMembers = new ArrayList<Rider>();
     }
 
@@ -98,6 +100,26 @@ public class Team {
 
     public int getId() {
         return this.teamId;
+    }
+
+    public void setTeamId(){
+        Random rand = new Random();
+        boolean uniqueId = false;
+        int newId = rand.nextInt(MAXTEAMID);
+
+        while(uniqueId != true){
+            newId = rand.nextInt(MAXTEAMID);
+            uniqueId = true;
+            for(int id : usedId ){
+                if(id == newId){
+                    uniqueId = false;
+                    break;
+                }
+            }
+        }
+
+        teamId = newId;
+        usedId.add(newId);
     }
 
 }

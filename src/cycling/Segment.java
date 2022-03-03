@@ -1,6 +1,8 @@
 package cycling;
 
 import java.util.Comparator;
+import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * This abstract class is used to represent a segment within a stage.
@@ -13,7 +15,8 @@ public abstract class Segment {
     private SegmentType type;
     private double location;
     private int segmentId;
-    private static int nextSegmentId = 1;
+    private static int maxSegmentId = 2000000;
+    private static ArrayList<Integer> usedId;
     
     /**
      * Constructor for a Segment.
@@ -26,15 +29,31 @@ public abstract class Segment {
     public Segment(double location, SegmentType type) {
         this.setLocation(location);
         this.setType(type);
-        setSegmentId(nextSegmentId++);
+        setSegmentId();
     }
     
     public int getSegmentId() {
         return segmentId;
     }
 
-    public void setSegmentId(int segmentId) {
-        this.segmentId = segmentId;
+    public void setSegmentId() {
+        Random rand = new Random();
+        boolean uniqueId = false;
+        int newId = rand.nextInt(maxSegmentId);
+
+        while(uniqueId != true){
+            newId = rand.nextInt(maxSegmentId);
+            uniqueId = true;
+            for(int id : usedId ){
+                if(id == newId){
+                    uniqueId = false;
+                    break;
+                }
+            }
+        }
+
+        segmentId = newId;
+        usedId.add(newId);
     }
 
     /**
