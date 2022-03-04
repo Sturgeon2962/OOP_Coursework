@@ -15,8 +15,6 @@ public abstract class Segment {
     private SegmentType type;
     private double location;
     private int segmentId;
-    private static int maxSegmentId = 2000000;
-    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
     
     /**
      * Constructor for a Segment.
@@ -26,38 +24,18 @@ public abstract class Segment {
      * {@link SegmentType#C2}, {@link SegmentType#C3}, {@link SegmentType#C4},
      * {@link SegmentType#HC} or {@link SegmentType#SPRINT}
      */
-    public Segment(double location, SegmentType type) {
+    public Segment(double location, SegmentType type, int id) {
         this.setLocation(location);
         this.setType(type);
-        setSegmentId();
+        setSegmentId(id);
     }
     
     public int getSegmentId() {
         return segmentId;
     }
 
-    public void setSegmentId() {
-        Random rand = new Random();
-        boolean uniqueId = false;
-        int newId = rand.nextInt(maxSegmentId);
-
-        if(usedId == null){
-            segmentId = newId;
-            usedId.add(newId);   
-        }else{
-            while(uniqueId != true){
-                newId = rand.nextInt(maxSegmentId);
-                uniqueId = true;
-                for(int id : usedId ){
-                    if(id == newId){
-                        uniqueId = false;
-                        break;
-                    }
-                }
-            }
-            segmentId = newId;
-            usedId.add(newId);
-        }
+    public void setSegmentId(int id) {
+        this.segmentId = id;
     }
 
     /**

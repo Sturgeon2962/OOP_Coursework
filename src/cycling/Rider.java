@@ -17,8 +17,7 @@ public class Rider {
     private int yearOfBirth;
 
     // Static Rider Attributes
-    public static final int MAXRIDERID = 2000000;
-    public static ArrayList<Integer> usedId = new ArrayList<Integer>();
+    
 
     /**
      * Constructor for a rider, This should mainly be called from the team method createRider {@link #createRider()}
@@ -27,11 +26,11 @@ public class Rider {
      * @param name The name of the rider
      * @param yearOfBirth The year that the rider was born
      */
-    public Rider(int teamId, String name, int yearOfBirth){
+    public Rider(int teamId, String name, int yearOfBirth, int id){
         setName(name);
         setTeamId(teamId);
         setYearOfBirth(yearOfBirth);
-        setRiderId();
+        setRiderId(id);
     }
 
     // Getters and setter for all attributes
@@ -81,28 +80,8 @@ public class Rider {
         return riderId;
     }
 
-    public void setRiderId(){
-        Random rand = new Random();
-        boolean uniqueId = false;
-        int newId = rand.nextInt(MAXRIDERID);
-        
-        if(usedId == null){
-            riderId = newId;
-            usedId.add(newId);   
-        }else{
-            while(uniqueId != true){
-                newId = rand.nextInt(MAXRIDERID);
-                uniqueId = true;
-                for(int id : usedId ){
-                    if(id == newId){
-                        uniqueId = false;
-                        break;
-                    }
-                }
-            }
-            riderId = newId;
-            usedId.add(newId);
-        }
+    public void setRiderId(int id){
+        this.riderId = id;
     }
 
 
