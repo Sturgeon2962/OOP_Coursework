@@ -107,6 +107,17 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("team does not exist");
 	}
 
+	private Team getTeamByRiderId(int riderId) throws IDNotRecognisedException {
+		for(Team team:teams){
+			for(Rider rider : team.getTeamMembers()) {
+				if (rider.getRiderId() == riderId) {
+					return team;
+				}
+			}
+		}
+		throw new IDNotRecognisedException("team does not exist");
+	}
+
 	private boolean isClimb(SegmentType type) {
 		if(type == SegmentType.SPRINT) {
 			return false;
@@ -305,8 +316,8 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeRider(int riderId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-
+		Team ridersTeam = getTeamByRiderId(riderId);
+		ridersTeam.removeRider(riderId);
 	}
 
 	@Override
