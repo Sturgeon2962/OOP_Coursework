@@ -1,7 +1,7 @@
 package cycling;
 
 import java.util.ArrayList;
-import java.util.Random;
+
 
 /**
  * A class to represent a riders in a race
