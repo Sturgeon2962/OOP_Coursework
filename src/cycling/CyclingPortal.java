@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * CyclingPortal is love, CyclingPortal is life.
@@ -23,6 +24,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	private ArrayList<Race> races = new ArrayList<Race>();
 	private ArrayList<Team> teams = new ArrayList<Team>();
+	private ArrayList<Result> results = new ArrayList<Result>();
 
 	private void isInvalidName(String name) throws InvalidNameException{
 
@@ -115,7 +117,18 @@ public class CyclingPortal implements CyclingPortalInterface {
 				}
 			}
 		}
-		throw new IDNotRecognisedException("team does not exist");
+		throw new IDNotRecognisedException("rider does not exist");
+	}
+
+	private Rider getRiderById(int riderId) throws IDNotRecognisedException {
+		for(Team team:teams){
+			for(Rider rider : team.getTeamMembers()) {
+				if (rider.getRiderId() == riderId) {
+					return rider;
+				}
+			}
+		}
+		throw new IDNotRecognisedException("rider does not exist");
 	}
 
 	private boolean isClimb(SegmentType type) {
@@ -327,8 +340,28 @@ public class CyclingPortal implements CyclingPortalInterface {
 	public void registerRiderResultsInStage(int stageId, int riderId, LocalTime... checkpoints)
 			throws IDNotRecognisedException, DuplicatedResultException, InvalidCheckpointsException,
 			InvalidStageStateException {
-		// TODO Auto-generated method stub
-
+		Stage stage = getStageById(stageId);
+		if (stage.getSegments().size()+2 != checkpoints.length) {
+			throw new InvalidCheckpointsException("invalid checkpoints");
+		}
+		if (!stage.isFullyCreated()) {
+			throw new InvalidStageStateException("can't add reults to unfinished race");
+		}
+		int stageResultsLocation = -1;
+		for(int i = 0; i < results.size(); i++) {
+			if (results.get(i).getStageId() == stageId) {
+				stageResultsLocation = i;
+			}
+		}
+		Result result;
+		if (stageResultsLocation < 0) {
+			result = new Result(stageId);
+			results.add(result);
+		} else {
+			result = new Result(stageId);
+		}
+		HashMap<Integer, LocalTime[]> riderResults = result.getRiderTimes();
+		riderResults.put(riderId, checkpoints);
 	}
 
 	@Override

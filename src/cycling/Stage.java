@@ -1,8 +1,14 @@
 package cycling;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+<<<<<<< HEAD
+import java.util.HashMap;
+import java.util.Random;
+=======
 
+>>>>>>> f4855ed0089deab481c3b553c927e1f168aaa229
 
 /**
  * A class to represent a stage of a race
@@ -32,8 +38,6 @@ public class Stage {
     private LocalDateTime startTime;
     private int stageId;
     private boolean fullyCreated = false;
-    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
-    
 
     /**
      * Constructor to create a new stage
@@ -57,6 +61,7 @@ public class Stage {
     }
 
     // Getters/Setters
+
 
     public boolean isFullyCreated() {
         return fullyCreated;
