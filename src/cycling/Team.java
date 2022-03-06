@@ -105,4 +105,12 @@ public class Team {
         this.teamId = id;
     }
 
+    public void removeRider(int riderId) {
+        for (Rider rider : this.getTeamMembers()) {
+            if (rider.getRiderId() == riderId) {
+                teamMembers.remove(riderId);
+            }
+        }
+    }
+
 }

@@ -265,7 +265,11 @@ public class Stage {
     }
 
     public void removeSegmentById(int segmentId){
-        segments.remove(segmentId);
+        for (Segment segment : this.getSegments()) {
+            if (segment.getSegmentId() == segmentId) {
+                segments.remove(segmentId);
+            }
+        }
     }
 
     public void addSegment(Segment segment){
