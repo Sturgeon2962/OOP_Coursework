@@ -15,10 +15,7 @@ public class Team {
     private String description;
     private int teamId;
 
-    // Static Team Attributes
-    public static final int MAXTEAMID = 2000000;
-    public static ArrayList<Team> teams = new ArrayList<Team>();
-    public static ArrayList<Integer> usedId = new ArrayList<Integer>();
+
     /*
     Could be better to use random IDs
     Between 0 and Integer.maxValue or similar
@@ -33,10 +30,10 @@ public class Team {
      * @param name The name given to the team
      * @param description A brief description of the team
      */
-    public Team (String name, String description){
+    public Team (String name, String description, int id){
         setTeamName(name);
         setTeamDescription(description);
-        setTeamId();
+        setTeamId(id);
         teamMembers = new ArrayList<Rider>();
     }
 
@@ -94,36 +91,16 @@ public class Team {
      * @param name The name of the rider
      * @param yearOfBirth The year that the rider was born
      */
-    public void createRider(String name, int yearOfBirth){
-        teamMembers.add(new Rider(teamId, name, yearOfBirth));
+    public void createRider(String name, int yearOfBirth, int id){
+        teamMembers.add(new Rider(teamId, name, yearOfBirth, id));
     }
 
     public int getId() {
         return this.teamId;
     }
 
-    public void setTeamId(){
-        Random rand = new Random();
-        boolean uniqueId = false;
-        int newId = rand.nextInt(MAXTEAMID);
-
-        if(usedId == null){
-            teamId = newId;
-            usedId.add(newId);   
-        }else{
-            while(uniqueId != true){
-                newId = rand.nextInt(MAXTEAMID);
-                uniqueId = true;
-                for(int id : usedId ){
-                    if(id == newId){
-                        uniqueId = false;
-                        break;
-                    }
-                }
-            }
-            teamId = newId;
-            usedId.add(newId);
-        }
+    public void setTeamId(int id){
+        this.teamId = id;
     }
 
 }

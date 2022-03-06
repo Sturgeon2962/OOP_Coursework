@@ -32,7 +32,6 @@ public class Stage {
     private LocalDateTime startTime;
     private int stageId;
     private boolean fullyCreated = false;
-    private static final int MAXSTAGEID = 2000000;
     private static ArrayList<Integer> usedId = new ArrayList<Integer>();
     
 
@@ -47,14 +46,14 @@ public class Stage {
      * {@link StageType#MEDIUM_MOUNTAIN}, {@link StageType#HIGH_MOUNTAIN},
      * {@link StageType#TT}
      */
-    Stage(String name, String description, double length, LocalDateTime startTime, StageType category) {
+    Stage(String name, String description, double length, LocalDateTime startTime, StageType category, int id) {
         setName(name);
         setDescription(description);
         setLength(length);
         setStartTime(startTime);
         setCategory(category);
         segments = new ArrayList<Segment>();
-        setStageId();
+        setStageId(id);
     }
 
     // Getters/Setters
@@ -71,27 +70,8 @@ public class Stage {
         return stageId;
     }
 
-    private void setStageId(){
-        Random rand = new Random();
-        boolean uniqueId = false;
-        int newId = rand.nextInt(MAXSTAGEID);
-        if(usedId.size() == 0){
-            stageId = newId;
-            usedId.add(newId);
-        }else{
-            while(uniqueId != true){
-                newId = rand.nextInt(MAXSTAGEID);
-                uniqueId = true;
-                for(int id : usedId ){
-                    if(id == newId){
-                        uniqueId = false;
-                        break;
-                    }
-                }
-            }
-            stageId = newId;
-            usedId.add(newId);
-        }
+    private void setStageId(int id){
+        this.stageId = id;
     }
     /**
      * A getter for the Flat sprin points

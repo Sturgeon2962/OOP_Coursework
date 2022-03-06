@@ -14,11 +14,6 @@ public class Race {
     private String description;
     private ArrayList<Stage> stages;
     private int raceID;
-    
-    // static attributes
-    private static final int MAXRACEID = 2000000;
-    public static ArrayList<Race> races = new ArrayList<Race>();
-    
 
     /**
      * The constructor to create a race
@@ -26,11 +21,11 @@ public class Race {
      * @param name The name of the race
      * @param descripion A breif description of the race
      */
-    public Race(String name, String descripion) {
+    public Race(String name, String descripion, int id) {
         setName(name);
         setDescription(descripion);
         stages = new ArrayList<Stage>();
-        setRaceId();
+        setRaceId(id);
     }
 
     /**
@@ -88,28 +83,10 @@ public class Race {
         return description;
     }
 
-    private void setRaceId(){
-        Random rand = new Random();
-        boolean uniqueId = false;
-        int newId = rand.nextInt(MAXRACEID);
-        
-        while(uniqueId != true){
-            newId = rand.nextInt(MAXRACEID);
-            uniqueId = true;
-            for (Race race: races){
-                if(race.getRaceID() == newId){
-                    uniqueId = false;
-                    break;
-                }
-            }
-        }
-        raceID = newId;
+    private void setRaceId(int id){
+        this.raceID = id;
     }
     // Methods below this point
-    
-    public static void removeRace(Race raceToBeRemoved){
-        Race.races.remove(raceToBeRemoved);
-    }
 
     public void addStage(Stage newStage){
         getStages().add(newStage);

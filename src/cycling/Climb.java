@@ -20,8 +20,8 @@ public class Climb extends Segment {
      * @param avgGradient The average gradient of the climb
      * @param length The length of the climb (km)
      */
-    Climb(double location, SegmentType type, double avgGradient, double length) {
-        super(location, type);
+    Climb(double location, SegmentType type, double avgGradient, double length, int id) {
+        super(location, type, id);
         this.setAvgGradient(avgGradient);
         this.setLength(length);
     }

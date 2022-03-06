@@ -13,7 +13,7 @@ public class IntermediateSprint extends Segment {
      * 
      * @param location How far into the race this segment finishes
      */
-    IntermediateSprint(double location) {
-        super(location, SegmentType.SPRINT);
+    IntermediateSprint(double location, int id) {
+        super(location, SegmentType.SPRINT, id);
     }
 }
