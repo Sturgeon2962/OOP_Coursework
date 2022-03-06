@@ -1,6 +1,7 @@
 package cycling;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
 
 /**
  * A class to represent a race containing stages and teams of riders.

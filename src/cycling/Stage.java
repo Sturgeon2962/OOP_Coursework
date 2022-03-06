@@ -1,7 +1,9 @@
 package cycling;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -32,8 +34,6 @@ public class Stage {
     private LocalDateTime startTime;
     private int stageId;
     private boolean fullyCreated = false;
-    private static ArrayList<Integer> usedId = new ArrayList<Integer>();
-    
 
     /**
      * Constructor to create a new stage
@@ -57,6 +57,7 @@ public class Stage {
     }
 
     // Getters/Setters
+
 
     public boolean isFullyCreated() {
         return fullyCreated;
