@@ -1,6 +1,7 @@
 package cycling;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -95,6 +96,15 @@ public class CyclingPortal implements CyclingPortalInterface {
 	private void checkValidCreateSegment(int stageId, double location) throws InvalidLocationException, InvalidStageStateException, IDNotRecognisedException {
 		checkValidLocation(getStageLength(stageId), location);
 		checkValidStageState(false, stageId, "stage already finished");
+	}
+
+	private Team getTeamById(int teamId) throws IDNotRecognisedException{
+		for(Team team:teams){
+			if (team.getId() == teamId){
+				return team;
+			}
+		}
+		throw new IDNotRecognisedException("team does not exist");
 	}
 
 	private boolean isClimb(SegmentType type) {
@@ -252,33 +262,45 @@ public class CyclingPortal implements CyclingPortalInterface {
 		isInvalidName(name);
 
 		Team newTeam = new Team(name, description, nextTeamId++);
-		
+		teams.add(newTeam);
 		return newTeam.getId();
 	}
 
 	@Override
 	public void removeTeam(int teamId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-
+		teams.remove(getTeamById(teamId));	
 	}
 
 	@Override
 	public int[] getTeams() {
-		// TODO Auto-generated method stub
-		return null;
+		int[] teamIds = new int[teams.size()];
+		for(int i = 0; i < teams.size(); i++){
+			teamIds[i] = teams.get(i).getId();
+		}
+		return teamIds;
 	}
 
 	@Override
 	public int[] getTeamRiders(int teamId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Team team = getTeamById(teamId);
+		int[] riderIds = new int[team.getTeamMembers().size()];
+		for(int i = 0; i < team.getTeamMembers().size(); i++){
+			riderIds[i] = team.getTeamMembers().get(i).getRiderId();
+		}
+		return riderIds;
 	}
 
 	@Override
 	public int createRider(int teamID, String name, int yearOfBirth)
 			throws IDNotRecognisedException, IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
+		LocalDate now = LocalDate.now();
+		int year = now.getYear();
+		if(yearOfBirth > year){
+			throw new IllegalArgumentException("That person is not yet born");
+		}
+		Team team = getTeamById(teamID);
+		Rider rider = team.createRider(name, yearOfBirth, nextRiderId++);
+		return rider.getRiderId();
 	}
 
 	@Override

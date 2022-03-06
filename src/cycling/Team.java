@@ -91,8 +91,10 @@ public class Team {
      * @param name The name of the rider
      * @param yearOfBirth The year that the rider was born
      */
-    public void createRider(String name, int yearOfBirth, int id){
-        teamMembers.add(new Rider(teamId, name, yearOfBirth, id));
+    public Rider createRider(String name, int yearOfBirth, int id){
+        Rider newRider = new Rider(teamId, name, yearOfBirth, id); 
+        teamMembers.add(newRider);
+        return newRider;
     }
 
     public int getId() {

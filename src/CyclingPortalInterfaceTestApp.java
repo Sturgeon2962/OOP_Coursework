@@ -156,5 +156,32 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
+
+		try {
+			
+			portal.createTeam("Test_Name1", "Test Description1");
+			portal.createTeam("Test_Name2", "Test Description2");
+			portal.createTeam("Test_Name3", "Test Description3");
+			portal.createTeam("Test_Name4", "Test Description4");
+			portal.createTeam("Test_Name5", "Test Description5");
+
+		} catch (IllegalNameException | InvalidNameException e) {
+			System.out.println(e.getMessage());
+		}
+
+		System.out.println(portal.getTeams());
+
+		try {
+			portal.removeTeam(2);
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			System.out.println(portal.getTeamRiders(1));
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 }
