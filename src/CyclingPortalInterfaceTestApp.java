@@ -183,5 +183,11 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
+		try {
+			portal.createRider(1, "josh", 2022);
+		} catch (IllegalArgumentException | IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 }

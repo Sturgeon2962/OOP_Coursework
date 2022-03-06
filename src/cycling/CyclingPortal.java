@@ -297,7 +297,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 		int year = now.getYear();
 		if(yearOfBirth > year){
 			throw new IllegalArgumentException("That person is not yet born");
+		} else if(yearOfBirth < 1900){
+			throw new IllegalArgumentException("That person is probably dead now");
 		}
+		
 		Team team = getTeamById(teamID);
 		Rider rider = team.createRider(name, yearOfBirth, nextRiderId++);
 		return rider.getRiderId();
