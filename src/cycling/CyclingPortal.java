@@ -1,10 +1,13 @@
 package cycling;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -355,6 +358,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 				}
 			}
 			stageResult.add(new Result(riderId, checkpoints));
+			Collections.sort(stageResult, Result.compareByTime);
 		} else {
 			ArrayList<Result> newStageResults = new ArrayList<Result>();
 			newStageResults.add(new Result(riderId, checkpoints));
@@ -364,6 +368,8 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public LocalTime[] getRiderResultsInStage(int stageId, int riderId) throws IDNotRecognisedException {
+		getRiderById(riderId);
+		getStageById(stageId);
 		if (stageResults.containsKey(stageId)) {
 			ArrayList<Result> stageResult = stageResults.get(stageId);
 			for (Result result : stageResult) {
@@ -371,18 +377,40 @@ public class CyclingPortal implements CyclingPortalInterface {
 					return result.getRiderTimes();
 				}
 			}
-			getRiderById(riderId);
-			LocalTime[] blank = {};
-			return blank;
-		} else {
-			throw new IDNotRecognisedException("stageID has no results");
 		}
+		LocalTime[] blank = {};
+		return blank;
 	}
 
 	@Override
 	public LocalTime getRiderAdjustedElapsedTimeInStage(int stageId, int riderId) throws IDNotRecognisedException {
-		
-		return null;
+		getRiderById(riderId);
+		Stage stage = getStageById(stageId);
+		Boolean adjust = true;
+		if (stage.getCategory() == StageType.TT) {
+			adjust = false;
+		}
+		int index = -1;
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+			for (Result result : stageResult) {
+				if (result.getRiderId() == riderId) {
+					if (!adjust) {
+						LocalTime timeToReturn = LocalTime.parse("00:00:00");
+						Duration time = Duration.between(result.getRiderTimes()[0], result.getRiderTimes()[result.getRiderTimes().length-1]);
+						timeToReturn = (LocalTime) time.addTo(timeToReturn);
+						return timeToReturn;
+					}
+					index = stageResult.indexOf(result);
+					break;
+				}
+			}
+		}
+		if (index < 0) {
+			return null;
+		} else {
+			ArrayList<LocalTime> riderTimes = new ArrayList<LocalTime>();
+		}
 	}
 
 	@Override
