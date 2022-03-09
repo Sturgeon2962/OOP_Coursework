@@ -238,8 +238,6 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
-
-		//SKNADOLHFN
 		
 	}
 }
