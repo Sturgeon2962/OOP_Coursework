@@ -381,7 +381,17 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public LocalTime getRiderAdjustedElapsedTimeInStage(int stageId, int riderId) throws IDNotRecognisedException {
-		return null;
+		for(Result result : results) {
+			if (result.getStageId() == stageId) {
+				HashMap<Integer, LocalTime[]> riderResults = result.getRiderTimes();
+				if (riderResults.containsKey(riderId)) {
+					return null;
+				} else {
+					throw new IDNotRecognisedException("riderID not found in stage results");
+				}
+			}
+		}
+		throw new IDNotRecognisedException("no results found for stageID");
 	}
 
 	@Override
