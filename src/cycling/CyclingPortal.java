@@ -395,6 +395,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 			ArrayList<Result> stageResult = stageResults.get(stageId);
 			for (Result result : stageResult) {
 				if (result.getRiderId() == riderId) {
+					System.out.println("Test");
 					if (!adjust) {
 						LocalTime timeToReturn = LocalTime.parse("00:00:00");
 						Duration time = Duration.between(result.getRiderTimes()[0], result.getRiderTimes()[result.getRiderTimes().length-1]);
