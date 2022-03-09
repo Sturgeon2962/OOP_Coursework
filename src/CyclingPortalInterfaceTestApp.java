@@ -193,7 +193,7 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
-			LocalTime[] arr = {null,null,null,null,null};
+			LocalTime[] arr = {};
 			portal.registerRiderResultsInStage(stageIds[4], 1, arr);
 		} catch (IDNotRecognisedException | DuplicatedResultException | InvalidCheckpointsException
 				| InvalidStageStateException e) {
@@ -209,12 +209,12 @@ public class CyclingPortalInterfaceTestApp {
 
 		try{
 			LocalTime t1 = LocalTime.parse("00:00:00");
-			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(100);
+			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(100000);
 			LocalTime t3 = LocalTime.parse("00:00:02");
-			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(50);
-			LocalTime[] arr1 = {t1,t4};
-			LocalTime[] arr2 = {t1,t2};
-			LocalTime[] arr3 = {t1,t3};
+			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(5000000);
+			LocalTime[] arr1 = {t1,t1,t1,t1,t4};
+			LocalTime[] arr2 = {t1,t1,t1,t1,t2};
+			LocalTime[] arr3 = {t1,t1,t1,t1,t3};
 			portal.createRider(1, "josh2", 2022);
 			portal.createRider(1, "Tom", 2022);
 			portal.createRider(1, "Bob", 2022);
@@ -239,7 +239,7 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
-
+		//SKNADOLHFN
 		
 	}
 }
