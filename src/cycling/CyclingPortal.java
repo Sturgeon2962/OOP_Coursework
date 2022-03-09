@@ -414,10 +414,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 					Duration time = Duration.between(result.getRiderTimes()[0], result.getRiderTimes()[result.getRiderTimes().length-1]);
 					timeToReturn = (LocalTime) time.addTo(timeToReturn);
 					riderTimes.add(timeToReturn);
-					System.out.println(timeToReturn);
 				}
-				System.out.println(Duration.between(riderTimes.get(index), riderTimes.get(index-1)).toMillis());
 				while ((index > 0)&&(Duration.between(riderTimes.get(index), riderTimes.get(index-1)).toMillis()<1000)) {
+					System.out.println(Duration.between(riderTimes.get(index), riderTimes.get(index-1)).toMillis());
 					index--;
 				}
 				return riderTimes.get(index);
