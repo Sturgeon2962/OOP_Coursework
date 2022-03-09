@@ -405,12 +405,23 @@ public class CyclingPortal implements CyclingPortalInterface {
 					break;
 				}
 			}
+			if (index < 0) {
+				return null;
+			} else {
+				ArrayList<LocalTime> riderTimes = new ArrayList<LocalTime>();
+				for (Result result : stageResult) {
+					LocalTime timeToReturn = LocalTime.parse("00:00:00");
+						Duration time = Duration.between(result.getRiderTimes()[0], result.getRiderTimes()[result.getRiderTimes().length-1]);
+						timeToReturn = (LocalTime) time.addTo(timeToReturn);
+						riderTimes.add(timeToReturn);
+				}
+				while ((index > 0)&&(Duration.between(riderTimes.get(index), riderTimes.get(index-1)).toSeconds()<1)) {
+					index--;
+				}
+				return riderTimes.get(index);
+			}
 		}
-		if (index < 0) {
-			return null;
-		} else {
-			ArrayList<LocalTime> riderTimes = new ArrayList<LocalTime>();
-		}
+		return null;
 	}
 
 	@Override
