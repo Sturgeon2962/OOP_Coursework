@@ -1,11 +1,14 @@
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import cycling.CyclingPortal;
 import cycling.CyclingPortalInterface;
+import cycling.DuplicatedResultException;
 import cycling.IDNotRecognisedException;
 import cycling.IllegalNameException;
+import cycling.InvalidCheckpointsException;
 import cycling.InvalidLengthException;
 import cycling.InvalidLocationException;
 import cycling.InvalidNameException;
@@ -189,5 +192,20 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
+		try {
+			LocalTime[] arr = {null,null,null,null,null};
+			portal.registerRiderResultsInStage(stageIds[4], 1, arr);
+		} catch (IDNotRecognisedException | DuplicatedResultException | InvalidCheckpointsException
+				| InvalidStageStateException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			System.out.println(portal.getRiderResultsInStage(stageIds[4], 1));
+		} catch (IDNotRecognisedException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	}
 }
