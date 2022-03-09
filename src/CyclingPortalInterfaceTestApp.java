@@ -201,5 +201,11 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 
+		try {
+			System.out.println(portal.getRiderResultsInStage(stageIds[4], 1));
+		} catch (IDNotRecognisedException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 	}
 }
