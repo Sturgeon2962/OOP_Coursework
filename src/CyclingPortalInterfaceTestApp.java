@@ -233,7 +233,7 @@ public class CyclingPortalInterfaceTestApp {
 
 		try {
 			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2);
-			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 3);
+			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 1);
 			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 4);
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
