@@ -197,7 +197,6 @@ public class CyclingPortalInterfaceTestApp {
 			portal.registerRiderResultsInStage(stageIds[4], 1, arr);
 		} catch (IDNotRecognisedException | DuplicatedResultException | InvalidCheckpointsException
 				| InvalidStageStateException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -205,8 +204,42 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(portal.getRiderResultsInStage(stageIds[4], 1));
 			System.out.println(portal.getRiderResultsInStage(stageIds[4], 9));
 		} catch (IDNotRecognisedException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
+
+		try{
+			LocalTime t1 = LocalTime.parse("00:00:00");
+			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(100);
+			LocalTime t3 = LocalTime.parse("00:00:02");
+			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(50);
+			LocalTime[] arr1 = {t1,t4};
+			LocalTime[] arr2 = {t1,t2};
+			LocalTime[] arr3 = {t1,t3};
+			portal.createRider(1, "josh2", 2022);
+			portal.createRider(1, "Tom", 2022);
+			portal.createRider(1, "Bob", 2022);
+			portal.registerRiderResultsInStage(stageIds[4], 2, arr1);
+			portal.registerRiderResultsInStage(stageIds[4], 3, arr2);
+			portal.registerRiderResultsInStage(stageIds[4], 4, arr3);
+		} catch (IllegalArgumentException | IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		} catch (DuplicatedResultException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidCheckpointsException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidStageStateException e) {
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2);
+			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 3);
+			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 4);
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+
+		
 	}
 }
