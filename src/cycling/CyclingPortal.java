@@ -381,6 +381,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public LocalTime getRiderAdjustedElapsedTimeInStage(int stageId, int riderId) throws IDNotRecognisedException {
+		
 		return null;
 	}
 
