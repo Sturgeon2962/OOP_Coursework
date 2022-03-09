@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Result {
     private int stageId;
-    private HashMap<Integer, LocalTime[]> riderTimes = new HashMap<Integer, LocalTime[]>();
+    private int 
 
     public Result(int stageId) {
         setStageId(stageId);
