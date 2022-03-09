@@ -371,7 +371,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 					return result.getRiderTimes();
 				}
 			}
-			throw new IDNotRecognisedException("no result in stage for rider");
+			getRiderById(riderId);
+			LocalTime[] blank = {};
+			return blank;
 		} else {
 			throw new IDNotRecognisedException("stageID has no results");
 		}
