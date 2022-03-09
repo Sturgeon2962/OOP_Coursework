@@ -416,6 +416,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 					riderTimes.add(timeToReturn);
 					System.out.println(timeToReturn);
 				}
+				System.out.println(Duration.between(riderTimes.get(index), riderTimes.get(index-1)).toMillis());
 				while ((index > 0)&&(Duration.between(riderTimes.get(index), riderTimes.get(index-1)).toMillis()<1000)) {
 					index--;
 				}
