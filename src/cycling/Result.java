@@ -6,31 +6,18 @@ import java.util.HashMap;
 
 public class Result {
     private int stageId;
-    private int riderId;
-    private LocalTime[] riderTimes;
+    private HashMap<Integer, LocalTime[]> riderTimes = new HashMap<Integer, LocalTime[]>();
 
     public Result(int stageId) {
         setStageId(stageId);
     }
     
-    public LocalTime[] getRiderTimes() {
-        return riderTimes;
-    }
-
-    public void setRiderTimes(LocalTime[] riderTimes) {
-        this.riderTimes = riderTimes;
-    }
-
-    public int getRiderId() {
-        return riderId;
-    }
-
-    public void setRiderId(int riderId) {
-        this.riderId = riderId;
-    }
-
     public int getStageId() {
         return stageId;
+    }
+
+    public HashMap<Integer, LocalTime[]> getRiderTimes() {
+        return riderTimes;
     }
     
     public void setStageId(int stageId) {
