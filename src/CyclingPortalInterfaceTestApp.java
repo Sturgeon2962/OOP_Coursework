@@ -203,6 +203,7 @@ public class CyclingPortalInterfaceTestApp {
 
 		try {
 			System.out.println(portal.getRiderResultsInStage(stageIds[4], 1));
+			System.out.println(portal.getRiderResultsInStage(stageIds[4], 9));
 		} catch (IDNotRecognisedException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
