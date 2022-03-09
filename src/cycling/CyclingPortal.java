@@ -347,39 +347,39 @@ public class CyclingPortal implements CyclingPortalInterface {
 		if (!stage.isFullyCreated()) {
 			throw new InvalidStageStateException("can't add reults to unfinished race");
 		}
-		
-		HashMap<Integer, LocalTime[]> riderResults = result.getRiderTimes();
-		riderResults.put(riderId, checkpoints);
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+			for (Result result : stageResult) {
+				if (riderId == result.getRiderId()) {
+					throw new DuplicatedResultException("rider result already exists for this stage");
+				}
+			}
+			stageResult.add(new Result(riderId, checkpoints));
+		} else {
+			ArrayList<Result> newStageResults = new ArrayList<Result>();
+			newStageResults.add(new Result(riderId, checkpoints));
+			stageResults.put(stageId, newStageResults);
+		}
 	}
 
 	@Override
 	public LocalTime[] getRiderResultsInStage(int stageId, int riderId) throws IDNotRecognisedException {
-		for(Result result : results) {
-			if (result.getStageId() == stageId) {
-				HashMap<Integer, LocalTime[]> riderResults = result.getRiderTimes();
-				if (riderResults.containsKey(riderId)) {
-					return riderResults.get(riderId);
-				} else {
-					throw new IDNotRecognisedException("riderID not found in stage results");
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+			for (Result result : stageResult) {
+				if (result.getRiderId() == riderId) {
+					return result.getRiderTimes();
 				}
 			}
+			throw new IDNotRecognisedException("no result in stage for rider");
+		} else {
+			throw new IDNotRecognisedException("stageID has no results");
 		}
-		throw new IDNotRecognisedException("no results found for stageID");
 	}
 
 	@Override
 	public LocalTime getRiderAdjustedElapsedTimeInStage(int stageId, int riderId) throws IDNotRecognisedException {
-		for(Result result : results) {
-			if (result.getStageId() == stageId) {
-				HashMap<Integer, LocalTime[]> riderResults = result.getRiderTimes();
-				if (riderResults.containsKey(riderId)) {
-					return null;
-				} else {
-					throw new IDNotRecognisedException("riderID not found in stage results");
-				}
-			}
-		}
-		throw new IDNotRecognisedException("no results found for stageID");
+		return null;
 	}
 
 	@Override

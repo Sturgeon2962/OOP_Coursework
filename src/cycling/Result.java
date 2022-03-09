@@ -7,6 +7,11 @@ import java.util.HashMap;
 public class Result {
     private int riderId;
     private LocalTime[] riderTimes;
+
+    public Result(int riderId, LocalTime[] times) {
+        setRiderId(riderId);
+        setRiderTimes(times);
+    }
     
     public LocalTime[] getRiderTimes() {
         return riderTimes;
