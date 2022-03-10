@@ -457,8 +457,38 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public LocalTime[] getRankedAdjustedElapsedTimesInStage(int stageId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		getStageById(stageId);
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+			LocalTime[] riderTimes = new LocalTime[stageResult.size()];
+			if (riderTimes.length <= 1) {
+				for (int i = 0; i < riderTimes.length; i++) {
+					LocalTime timeToReturn = LocalTime.parse("00:00:00");
+					riderTimes = stageResult.get(i).getRiderTimes();
+					Duration totalTime = Duration.between(riderTimes[0], riderTimes[riderTimes.length-1]);
+					riderTimes[i] = (LocalTime) totalTime.addTo(timeToReturn);
+				}
+				return riderTimes;
+			} else {
+				ArrayList<LocalTime> originalRiderTimes = new ArrayList<LocalTime>();
+				for (Result result : stageResult) {
+					LocalTime timeToReturn = LocalTime.parse("00:00:00");
+					Duration time = Duration.between(result.getRiderTimes()[0], result.getRiderTimes()[result.getRiderTimes().length-1]);
+					timeToReturn = (LocalTime) time.addTo(timeToReturn);
+					originalRiderTimes.add(timeToReturn);
+				}
+				for (int i = riderTimes.length-1; i > 0; i--) {
+					int index = i;
+					while ((index > 0)&&(Duration.between(originalRiderTimes.get(index-1), originalRiderTimes.get(index)).toMillis()<1000)) {
+						index--;
+					}
+					riderTimes[i] = originalRiderTimes.get(i);
+				}
+				return riderTimes;
+			}
+		}
+		LocalTime[] blank = {};
+		return blank;
 	}
 
 	@Override
