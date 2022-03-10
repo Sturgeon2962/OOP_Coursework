@@ -482,7 +482,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 					while ((index > 0)&&(Duration.between(originalRiderTimes.get(index-1), originalRiderTimes.get(index)).toMillis()<1000)) {
 						index--;
 					}
-					riderTimes[i] = originalRiderTimes.get(i);
+					riderTimes[i] = originalRiderTimes.get(index);
 				}
 				riderTimes[0] = originalRiderTimes.get(0);
 				return riderTimes;
