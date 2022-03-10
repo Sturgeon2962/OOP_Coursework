@@ -527,8 +527,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 				if (stage.getSegments().get(i).getType() == SegmentType.SPRINT) {
 					ArrayList<LocalTime> sprintTimes = new ArrayList<LocalTime>();
 					for (int j = 0; j < stageResult.size(); j++) {
-						sprintTimes.add(stageResult.get(j).getRiderTimes()[i-1]);
+						sprintTimes.add(stageResult.get(j).getRiderTimes()[i+1]);
 					}
+					// Order sprint times, then add rider points (make sure correct rider)
 					for (LocalTime time : sprintTimes) {
 						System.out.println(time);
 					}
