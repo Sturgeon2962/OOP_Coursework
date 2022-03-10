@@ -276,9 +276,12 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
+			System.out.println("test1");
 			for(int i : portal.getRidersRankInStage(stageIds[4])){
 				System.out.println(i);
 			}
+			System.out.println("test2");
+			
 
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
@@ -288,9 +291,12 @@ public class CyclingPortalInterfaceTestApp {
 		//Check is the results are empty
 
 		try {
+			System.out.println("test3");
 			for (LocalTime i : portal.getRankedAdjustedElapsedTimesInStage(stageIds[4])){
 				System.out.println(i);
 			}
+			System.out.println("test4");
+
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
