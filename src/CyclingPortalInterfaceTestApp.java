@@ -288,7 +288,7 @@ public class CyclingPortalInterfaceTestApp {
 		//Check is the results are empty
 
 		try {
-			for (LocalTime i : portal.getRankedAdjustedElapsedTimesInStage(stageIds[4]){
+			for (LocalTime i : portal.getRankedAdjustedElapsedTimesInStage(stageIds[4])){
 				System.out.println(i);
 			}
 		} catch (IDNotRecognisedException e) {
