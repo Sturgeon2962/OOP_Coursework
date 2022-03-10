@@ -446,6 +446,11 @@ public class CyclingPortal implements CyclingPortalInterface {
 		getStageById(stageId);
 		if (stageResults.containsKey(stageId)) {
 			ArrayList<Result> stageResult = stageResults.get(stageId);
+			int[] riderRanks = new int[stageResult.size()];
+			for (int i = 0; i < stageResult.size(); i++) {
+				riderRanks[i] = stageResult.get(i).getRiderId();
+			}
+			return riderRanks;
 		}
 		return null;
 	}
