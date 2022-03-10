@@ -484,6 +484,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 					}
 					riderTimes[i] = originalRiderTimes.get(i);
 				}
+				riderTimes[0] = originalRiderTimes.get(0);
 				return riderTimes;
 			}
 		}
