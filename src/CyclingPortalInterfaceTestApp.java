@@ -214,7 +214,7 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime t3 = LocalTime.parse("00:00:02");
 			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(500000000);
 			LocalTime t5 = LocalTime.parse("00:00:03");
-			LocalTime t6 = LocalTime.parse("00:00:04").minusNanos(100000);
+			LocalTime t6 = LocalTime.parse("00:00:04").minusNanos(10000000);
 			LocalTime t7 = LocalTime.parse("00:00:04");
 			LocalTime t8 = LocalTime.parse("00:00:05");
 			LocalTime t9 = LocalTime.parse("00:00:06");
@@ -256,15 +256,22 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
+			System.out.println("start");
 			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2));
 			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 3));
 			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 4));
+			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 5));
+			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 6));
+			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 7));
+			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 8));
+			System.out.println("end");
+
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
 		
 		try {
-			portal.deleteRiderResultsInStage(stageIds[4],2);
+			portal.deleteRiderResultsInStage(stageIds[4],3);
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -276,13 +283,9 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
-			System.out.println("test1");
 			for(int i : portal.getRidersRankInStage(stageIds[4])){
 				System.out.println(i);
-			}
-			System.out.println("test2");
-			
-
+			}	
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 
@@ -291,12 +294,9 @@ public class CyclingPortalInterfaceTestApp {
 		//Check is the results are empty
 
 		try {
-			System.out.println("test3");
 			for (LocalTime i : portal.getRankedAdjustedElapsedTimesInStage(stageIds[4])){
 				System.out.println(i);
 			}
-			System.out.println("test4");
-
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
