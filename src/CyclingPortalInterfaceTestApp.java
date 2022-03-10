@@ -2,6 +2,7 @@ import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Random;
 
 import cycling.CyclingPortal;
 import cycling.CyclingPortalInterface;
@@ -212,15 +213,38 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(100000);
 			LocalTime t3 = LocalTime.parse("00:00:02");
 			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(500000000);
+			LocalTime t5 = LocalTime.parse("00:00:03");
+			LocalTime t6 = LocalTime.parse("00:00:04").minusNanos(100000);
+			LocalTime t7 = LocalTime.parse("00:00:04");
+			LocalTime t8 = LocalTime.parse("00:00:05");
+			LocalTime t9 = LocalTime.parse("00:00:06");
+
 			LocalTime[] arr1 = {t1,t1,t1,t1,t4};
 			LocalTime[] arr2 = {t1,t1,t1,t1,t2};
 			LocalTime[] arr3 = {t1,t1,t1,t1,t3};
+			LocalTime[] arr4 = {t1,t1,t1,t1,t5};
+			LocalTime[] arr5 = {t1,t1,t1,t1,t6};
+			LocalTime[] arr6 = {t1,t1,t1,t1,t7};
+			LocalTime[] arr8 = {t1,t1,t1,t1,t9};
+			LocalTime[] arr7 = {t1,t1,t1,t1,t8};
+
 			portal.createRider(1, "josh2", 2022);
 			portal.createRider(1, "Tom", 2022);
-			portal.createRider(1, "Bob", 2022);
-			portal.registerRiderResultsInStage(stageIds[4], 2, arr1);
-			portal.registerRiderResultsInStage(stageIds[4], 3, arr2);
+			portal.createRider(1, "Harry", 2022);
+			portal.createRider(1, "Dora", 2022);
+			portal.createRider(1, "Oscar", 2022);
+			portal.createRider(1, "Tash", 2022);
+			portal.createRider(1, "Ryan", 2022);
+
 			portal.registerRiderResultsInStage(stageIds[4], 4, arr3);
+			portal.registerRiderResultsInStage(stageIds[4], 9, arr8);
+			portal.registerRiderResultsInStage(stageIds[4], 3, arr2);
+			portal.registerRiderResultsInStage(stageIds[4], 6, arr5);
+			portal.registerRiderResultsInStage(stageIds[4], 2, arr1);
+			portal.registerRiderResultsInStage(stageIds[4], 7, arr6);
+			portal.registerRiderResultsInStage(stageIds[4], 8, arr7);
+			portal.registerRiderResultsInStage(stageIds[4], 5, arr4);
+
 		} catch (IllegalArgumentException | IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		} catch (DuplicatedResultException e) {
@@ -257,9 +281,18 @@ public class CyclingPortalInterfaceTestApp {
 			}
 
 		} catch (IDNotRecognisedException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 
+		}
+
+		//Check is the results are empty
+
+		try {
+			for (LocalTime i : portal.getRankedAdjustedElapsedTimesInStage(stageIds[4]){
+				System.out.println(i);
+			}
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }
