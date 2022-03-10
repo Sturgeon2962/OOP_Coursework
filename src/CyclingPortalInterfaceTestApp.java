@@ -271,7 +271,7 @@ public class CyclingPortalInterfaceTestApp {
 		}
 		
 		try {
-			portal.deleteRiderResultsInStage(stageIds[4],2);
+			portal.deleteRiderResultsInStage(stageIds[4],3);
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
