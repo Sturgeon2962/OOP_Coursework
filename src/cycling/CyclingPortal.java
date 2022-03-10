@@ -430,17 +430,23 @@ public class CyclingPortal implements CyclingPortalInterface {
 		getStageById(stageId);
 		if (stageResults.containsKey(stageId)) {
 			ArrayList<Result> stageResult = stageResults.get(stageId);
+			Result toRemove = null;
 			for (Result result : stageResult) {
 				if (result.getRiderId() == riderId) {
-					stageResult.remove(result);
+					toRemove = result;
+					break;
 				}
 			}
+			stageResult.remove(toRemove);
 		}
 	}
 
 	@Override
 	public int[] getRidersRankInStage(int stageId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
+		getStageById(stageId);
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+		}
 		return null;
 	}
 
