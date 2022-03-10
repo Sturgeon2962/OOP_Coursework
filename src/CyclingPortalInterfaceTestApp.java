@@ -133,9 +133,9 @@ public class CyclingPortalInterfaceTestApp {
 		try {
 			segmentIds.add( portal.addIntermediateSprintToStage(stageIds[4], 6.5));
 		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
-				| InvalidStageTypeException e) {
+		| InvalidStageTypeException e) {
 			System.out.println(e.getMessage());
-
+			
 		}
 
 		try {
@@ -143,13 +143,13 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException | InvalidStageStateException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
 		try {
 			portal.removeSegment(segmentIds.get(1));
 		} catch (IDNotRecognisedException | InvalidStageStateException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
 		int[] test;
 		try {
 			test = portal.getStageSegments(stageIds[4]);
@@ -160,7 +160,7 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
 		try {
 			
 			portal.createTeam("Test_Name1", "Test Description1");
@@ -168,25 +168,25 @@ public class CyclingPortalInterfaceTestApp {
 			portal.createTeam("Test_Name3", "Test Description3");
 			portal.createTeam("Test_Name4", "Test Description4");
 			portal.createTeam("Test_Name5", "Test Description5");
-
+			
 		} catch (IllegalNameException | InvalidNameException e) {
 			System.out.println(e.getMessage());
 		}
 
 		System.out.println(portal.getTeams());
-
+		
 		try {
 			portal.removeTeam(2);
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
 		try {
 			System.out.println(portal.getTeamRiders(1));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
 		try {
 			portal.createRider(1, "josh", 2022);
 		} catch (IllegalArgumentException | IDNotRecognisedException e) {
@@ -197,7 +197,7 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime[] arr = {};
 			portal.registerRiderResultsInStage(stageIds[4], 1, arr);
 		} catch (IDNotRecognisedException | DuplicatedResultException | InvalidCheckpointsException
-				| InvalidStageStateException e) {
+		| InvalidStageStateException e) {
 			System.out.println(e.getMessage());
 		}
 
@@ -218,7 +218,7 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime t7 = LocalTime.parse("00:00:04");
 			LocalTime t8 = LocalTime.parse("00:00:05");
 			LocalTime t9 = LocalTime.parse("00:00:06");
-
+			
 			LocalTime[] arr1 = {t1,t1,t1,t1,t4};
 			LocalTime[] arr2 = {t1,t1,t1,t1,t2};
 			LocalTime[] arr3 = {t1,t1,t1,t1,t3};
@@ -227,7 +227,7 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime[] arr6 = {t1,t1,t1,t1,t7};
 			LocalTime[] arr8 = {t1,t1,t1,t1,t9};
 			LocalTime[] arr7 = {t1,t1,t1,t1,t8};
-
+			
 			portal.createRider(1, "josh2", 2022);
 			portal.createRider(1, "Tom", 2022);
 			portal.createRider(1, "Harry", 2022);
@@ -244,7 +244,7 @@ public class CyclingPortalInterfaceTestApp {
 			portal.registerRiderResultsInStage(stageIds[4], 7, arr6);
 			portal.registerRiderResultsInStage(stageIds[4], 8, arr7);
 			portal.registerRiderResultsInStage(stageIds[4], 5, arr4);
-
+			
 		} catch (IllegalArgumentException | IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		} catch (DuplicatedResultException e) {
@@ -265,7 +265,7 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 7));
 			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 8));
 			System.out.println("end");
-
+			
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -275,7 +275,7 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
 		try {
 			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2));
 		} catch (IDNotRecognisedException e) {
@@ -288,11 +288,11 @@ public class CyclingPortalInterfaceTestApp {
 			}	
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
-
+			
 		}
 
 		//Check is the results are empty
-
+		
 		try {
 			for (LocalTime i : portal.getRankedAdjustedElapsedTimesInStage(stageIds[4])){
 				System.out.println(i);
@@ -300,5 +300,14 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
+		try {
+			for(int i : portal.getRidersPointsInStage(stageIds[4])){
+				System.out.println(i);
+			}
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+	
 	}
 }
+
