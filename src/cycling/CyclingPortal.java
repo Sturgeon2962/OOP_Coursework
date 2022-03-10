@@ -494,8 +494,49 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getRidersPointsInStage(int stageId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Stage stage = getStageById(stageId);
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+			int[] riderPoints = new int[stageResult.size()];
+			int[] stagePoints;
+			switch (stage.getCategory()) {
+				case FLAT:
+					stagePoints = Stage.getSprintFlat();
+					break;
+				case MEDIUM_MOUNTAIN:
+					stagePoints = Stage.getSprintHilly();
+					break;
+				case HIGH_MOUNTAIN:
+					stagePoints = Stage.getSprintHigh();
+					break;
+				case TT:
+					stagePoints = Stage.getSprintTT();
+					break;
+				default:
+					stagePoints = new int[0];
+			}
+			for (int i = 0; i < riderPoints.length; i++) {
+				if (i >= stagePoints.length) {
+					riderPoints[i] = 0;
+				} else {
+					riderPoints[i] = stagePoints[i];
+				}
+			}
+			// check for intermediate sprint
+			for (int i = 0; i < stage.getSegments().size(); i++) {
+				if (stage.getSegments().get(i).getType() == SegmentType.SPRINT) {
+					ArrayList<LocalTime> sprintTimes = new ArrayList<LocalTime>();
+					for (int j = 0; j < stageResult.size(); j++) {
+						sprintTimes.add(stageResult.get(j).getRiderTimes()[i-1]);
+					}
+					for (LocalTime time : sprintTimes) {
+						System.out.println(time);
+					}
+				}
+			}
+		}
+		int[] emptyArray = new int[0];
+		return emptyArray;
 	}
 
 	@Override
