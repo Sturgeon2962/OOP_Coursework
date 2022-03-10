@@ -239,5 +239,16 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 		
+		try {
+			portal.deleteRiderResultsInStage(stageIds[4],2);
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2);
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
