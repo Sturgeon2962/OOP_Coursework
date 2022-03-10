@@ -246,9 +246,20 @@ public class CyclingPortalInterfaceTestApp {
 		}
 
 		try {
-			portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2);
+			System.out.println(portal.getRiderAdjustedElapsedTimeInStage(stageIds[4], 2));
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
+		}
+
+		try {
+			for(int i : portal.getRidersRankInStage(stageIds[4])){
+				System.out.println(i);
+			}
+
+		} catch (IDNotRecognisedException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+
 		}
 	}
 }
