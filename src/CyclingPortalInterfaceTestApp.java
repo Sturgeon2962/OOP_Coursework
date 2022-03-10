@@ -209,7 +209,7 @@ public class CyclingPortalInterfaceTestApp {
 
 		try{
 			LocalTime t1 = LocalTime.parse("00:00:00");
-			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(1000000000);
+			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(100000);
 			LocalTime t3 = LocalTime.parse("00:00:02");
 			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(500000000);
 			LocalTime[] arr1 = {t1,t1,t1,t1,t4};
