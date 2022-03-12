@@ -2,6 +2,7 @@ package cycling;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
