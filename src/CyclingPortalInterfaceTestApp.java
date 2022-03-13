@@ -371,7 +371,6 @@ public class CyclingPortalInterfaceTestApp {
 
 			portal.registerRiderResultsInStage(stageIds[5], 4, arr3);
 			portal.registerRiderResultsInStage(stageIds[5], 9, arr8);
-			portal.registerRiderResultsInStage(stageIds[5], 3, arr2);
 			portal.registerRiderResultsInStage(stageIds[5], 6, arr5);
 			portal.registerRiderResultsInStage(stageIds[5], 2, arr1);
 			portal.registerRiderResultsInStage(stageIds[5], 7, arr6);
