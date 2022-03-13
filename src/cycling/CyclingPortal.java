@@ -734,6 +734,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 			for(int i = 0; i< riders.length; i++){
 				if(totalTime.containsKey(riders[i])){
 					Duration x = Duration.between(LocalTime.parse("00:00:00"), ridertimes[i]);
+					System.out.println(x + " added to " + totalTime.get(riders[i]));
 					totalTime.put(riders[i], (LocalTime) x.addTo(totalTime.get(riders[i])));
 				}else{
 					totalTime.put(riders[i], ridertimes[i]);
