@@ -9,6 +9,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -461,7 +462,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 			}
 			return riderRanks;
 		}
-		return null;
+		return new int[0];
 	}
 
 	@Override
@@ -724,8 +725,37 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public LocalTime[] getGeneralClassificationTimesInRace(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Race race = getRaceById(raceId);
+		HashMap<Integer,LocalTime> totalTime = new HashMap<Integer, LocalTime>();
+
+		for (Stage stage : race.getStages()){
+			int[] riders = getRidersRankInStage(stage.getStageId());
+			LocalTime[] ridertimes = getRankedAdjustedElapsedTimesInStage(stage.getStageId());
+			for(int i = 0; i< riders.length; i++){
+				System.out.println("Test1" + totalTime.containsKey(riders[i]));
+				if(totalTime.containsKey(riders[i])){
+					Duration x = Duration.between(LocalTime.parse("00:00:00"), ridertimes[i]);
+					totalTime.put(riders[i], (LocalTime) x.addTo(totalTime.get(riders[i])));
+					System.out.println(riders[i] +" Test " + x.addTo(totalTime.get(riders[i])));
+				}else{
+					totalTime.put(riders[i], ridertimes[i]);
+					//System.out.println(riders[i]);
+				}
+
+			}
+		}
+		ArrayList<LocalTime> timeToReturn = new ArrayList<LocalTime>();
+		for(LocalTime i : totalTime.values()){
+			timeToReturn.add(i);
+			//System.out.println(i);
+		}
+		
+		Collections.sort(timeToReturn);
+		LocalTime[] times = new LocalTime[timeToReturn.size()];
+		for(int i = 0; i < timeToReturn.size(); i++){
+			times[i] = timeToReturn.get(i);
+		} 
+		return times;
 	}
 
 	@Override
