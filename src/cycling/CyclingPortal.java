@@ -705,8 +705,21 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeRaceByName(String name) throws NameNotRecognisedException {
-		// TODO Auto-generated method stub
-
+		int[] stageids;
+		for (Race race: races){
+			if (race.getName().equals(name)){
+				stageids = new int[race.getStages().size()]; 
+				for (int i=0;i<stageids.length;i++){
+					stageids[i] = race.getStages().get(i).getStageId();
+				}
+				races.remove(race);		
+				for(int stage:stageids){
+					stageResults.remove(stage);
+				}
+				return;
+			}
+		}
+		throw new NameNotRecognisedException("Race does not eixst so cannot be removes");
 	}
 
 	@Override

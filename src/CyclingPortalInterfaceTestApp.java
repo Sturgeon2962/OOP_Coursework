@@ -16,6 +16,7 @@ import cycling.InvalidLocationException;
 import cycling.InvalidNameException;
 import cycling.InvalidStageStateException;
 import cycling.InvalidStageTypeException;
+import cycling.NameNotRecognisedException;
 import cycling.Segment;
 import cycling.SegmentType;
 import cycling.StageType;
@@ -326,7 +327,23 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
-	
+
+		for(int i : portal.getRaceIds()){
+			System.out.println(i);
+		}
+
+
+		try {
+			portal.removeRaceByName("Test1");
+		} catch (NameNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+		for(int i : portal.getRaceIds()){
+			System.out.println(i);
+		}
+
+
 	}
 }
 
