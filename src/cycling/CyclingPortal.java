@@ -345,6 +345,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeRider(int riderId) throws IDNotRecognisedException {
+		//Remove to Results
 		Team ridersTeam = getTeamByRiderId(riderId);
 		ridersTeam.removeRider(riderId);
 	}
