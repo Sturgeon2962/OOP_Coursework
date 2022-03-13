@@ -220,16 +220,6 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime t8 = LocalTime.parse("00:00:05");
 			LocalTime t9 = LocalTime.parse("00:00:06");
 			
-<<<<<<< HEAD
-			LocalTime[] arr1 = {t1,t2,t1,t1,t4};
-			LocalTime[] arr2 = {t1,t2,t1,t1,t2};
-			LocalTime[] arr3 = {t1,t3,t1,t1,t3};
-			LocalTime[] arr4 = {t1,t4,t1,t1,t5};
-			LocalTime[] arr5 = {t1,t5,t1,t1,t6};
-			LocalTime[] arr6 = {t1,t6,t1,t1,t7};
-			LocalTime[] arr8 = {t1,t2,t1,t1,t9};
-			LocalTime[] arr7 = {t1,t2,t1,t1,t8};
-=======
 			LocalTime[] arr1 = {t1,t1,t6,t9,t4};
 			LocalTime[] arr2 = {t1,t3,t8,t8,t2};
 			LocalTime[] arr3 = {t1,t2,t3,t7,t3};
@@ -238,7 +228,6 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime[] arr6 = {t1,t4,t2,t4,t7};
 			LocalTime[] arr8 = {t1,t4,t7,t3,t9};
 			LocalTime[] arr7 = {t1,t7,t5,t2,t8};
->>>>>>> 960a092a3c41b016db53c9bf8056f986b85de140
 			
 			portal.createRider(1, "josh2", 2022);
 			portal.createRider(1, "Tom", 2022);
