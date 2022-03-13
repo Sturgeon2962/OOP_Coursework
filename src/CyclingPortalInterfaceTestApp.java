@@ -16,6 +16,7 @@ import cycling.InvalidLocationException;
 import cycling.InvalidNameException;
 import cycling.InvalidStageStateException;
 import cycling.InvalidStageTypeException;
+import cycling.NameNotRecognisedException;
 import cycling.Segment;
 import cycling.SegmentType;
 import cycling.StageType;
@@ -80,9 +81,9 @@ public class CyclingPortalInterfaceTestApp {
 			System.out.println(e.getMessage());
 		}
 		
-		int[] stageIds = new int[5];
+		int[] stageIds = new int[6];
 		try {
-			int numOfStages = 5;
+			int numOfStages = 6 ;
 			for(int x = 0; x<numOfStages; x++){
 				stageIds[x] = portal.addStageToRace(raceIds[2], "test"+x, "test"+x, 10, LocalDateTime.of(2022, 10, 10, 0, 0), StageType.FLAT);
 			}
@@ -119,6 +120,10 @@ public class CyclingPortalInterfaceTestApp {
 		ArrayList<Integer> segmentIds = new ArrayList<Integer>();
 		try {
 			segmentIds.add(portal.addCategorizedClimbToStage(stageIds[4], 6.0, SegmentType.C1, 1.0, 0.5));
+			segmentIds.add(portal.addCategorizedClimbToStage(stageIds[5], 1.0, SegmentType.C1, 1.0, 0.5));
+			segmentIds.add(portal.addCategorizedClimbToStage(stageIds[5], 2.0, SegmentType.C1, 1.0, 0.5));
+			segmentIds.add(portal.addCategorizedClimbToStage(stageIds[5], 3.0, SegmentType.C1, 1.0, 0.5));
+
 		} catch (IDNotRecognisedException | InvalidLocationException | InvalidStageStateException
 				| InvalidStageTypeException e) {
 			System.out.println(e.getMessage());
@@ -326,7 +331,72 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
-	
+
+		for(int i : portal.getRaceIds()){
+			System.out.println(i);
+		}
+
+
+		try {
+			portal.removeRaceByName("Test1");
+		} catch (NameNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+		for(int i : portal.getRaceIds()){
+			System.out.println(i);
+		}
+
+		try{
+			LocalTime t1 = LocalTime.parse("00:00:00");
+			LocalTime t2 = LocalTime.parse("00:00:01").minusNanos(100000);
+			LocalTime t3 = LocalTime.parse("00:00:02");
+			LocalTime t4 = LocalTime.parse("00:00:02").plusNanos(500000000);
+			LocalTime t5 = LocalTime.parse("00:00:03");
+			LocalTime t6 = LocalTime.parse("00:00:04").minusNanos(10000000);
+			LocalTime t7 = LocalTime.parse("00:00:04");
+			LocalTime t8 = LocalTime.parse("00:00:05");
+			LocalTime t9 = LocalTime.parse("00:00:06");
+			
+			LocalTime[] arr1 = {t1,t1,t6,t9,t4};
+			LocalTime[] arr2 = {t1,t3,t8,t8,t2};
+			LocalTime[] arr3 = {t1,t2,t3,t7,t3};
+			LocalTime[] arr4 = {t1,t6,t4,t6,t5};
+			LocalTime[] arr5 = {t1,t5,t6,t5,t6};
+			LocalTime[] arr6 = {t1,t4,t2,t4,t7};
+			LocalTime[] arr8 = {t1,t4,t7,t3,t9};
+			LocalTime[] arr7 = {t1,t7,t5,t2,t8};
+			
+			
+
+			portal.registerRiderResultsInStage(stageIds[5], 4, arr3);
+			portal.registerRiderResultsInStage(stageIds[5], 9, arr8);
+			portal.registerRiderResultsInStage(stageIds[5], 3, arr2);
+			portal.registerRiderResultsInStage(stageIds[5], 6, arr5);
+			portal.registerRiderResultsInStage(stageIds[5], 2, arr1);
+			portal.registerRiderResultsInStage(stageIds[5], 7, arr6);
+			portal.registerRiderResultsInStage(stageIds[5], 8, arr7);
+			portal.registerRiderResultsInStage(stageIds[5], 5, arr4);
+			
+		} catch (IllegalArgumentException | IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		} catch (DuplicatedResultException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidCheckpointsException e) {
+			System.out.println(e.getMessage());
+		} catch (InvalidStageStateException e) {
+			System.out.println(e.getMessage());
+		}
+
+
+
+		try {
+			for(LocalTime i : portal.getGeneralClassificationTimesInRace(raceIds[2])){
+				System.out.println(i);
+			}
+		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
 
