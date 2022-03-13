@@ -1,6 +1,7 @@
 package cycling;
 
 import java.util.Comparator;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author
  * @version 1.0
  */
-public abstract class Segment {
+public abstract class Segment implements Serializable {
     // Non-Static Attributes
     private SegmentType type;
     private double location;

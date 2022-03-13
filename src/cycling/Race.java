@@ -1,4 +1,5 @@
 package cycling;
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.HashMap;
  * @author
  * @version 1.0
  */
-public class Race {
+public class Race implements Serializable {
     // non-static attributes
     private String name;
     private String description;

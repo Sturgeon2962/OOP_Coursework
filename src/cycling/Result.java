@@ -1,5 +1,6 @@
 package cycling;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class Result {
+public class Result implements Serializable {
     private int riderId;
     private LocalTime[] riderTimes;
 

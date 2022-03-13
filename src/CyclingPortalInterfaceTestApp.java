@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -313,6 +314,16 @@ public class CyclingPortalInterfaceTestApp {
 				System.out.println(i);
 			}
 		} catch (IDNotRecognisedException e) {
+			System.out.println(e.getMessage());
+		}
+
+		try {
+			portal.saveCyclingPortal("testSave.ser");
+			portal.eraseCyclingPortal();
+			portal.loadCyclingPortal("testSave.ser");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 	

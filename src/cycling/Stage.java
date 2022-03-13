@@ -1,4 +1,5 @@
 package cycling;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Random;
  * @author
  * @version 1.0
  */
-public class Stage {
+public class Stage implements Serializable {
     // Stage points - static attributes
     private final static int[] sprintFlatPoints = { 50, 30, 20, 18, 16, 14, 12, 10, 8, 7, 6, 5, 4, 3, 2 };
     private final static int[] sprintHillyPoints = { 30, 25, 22, 19, 17, 15, 13, 11, 9, 7, 6, 5, 4, 3, 2 };

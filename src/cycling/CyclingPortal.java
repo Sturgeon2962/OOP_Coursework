@@ -1,6 +1,10 @@
 package cycling;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -634,20 +638,69 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void eraseCyclingPortal() {
-		// TODO Auto-generated method stub
+		nextSegmentId = 1;
+		nextStageId = 1;
+		nextRiderId = 1;
+		nextTeamId = 1;
+		nextRaceId = 1;
 
+		races.clear();
+		teams.clear();
+		stageResults.clear();
 	}
 
 	@Override
 	public void saveCyclingPortal(String filename) throws IOException {
-		// TODO Auto-generated method stub
-
+		ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(filename));
+		ob.writeObject(nextSegmentId);
+		ob.writeObject(nextStageId);
+		ob.writeObject(nextRiderId);
+		ob.writeObject(nextTeamId);
+		ob.writeObject(nextRaceId);
+		ob.writeObject(races);
+		ob.writeObject(teams);
+		ob.writeObject(stageResults);
+		ob.flush();
+		ob.close();
 	}
 
 	@Override
 	public void loadCyclingPortal(String filename) throws IOException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-
+		ObjectInputStream ob = new ObjectInputStream(new FileInputStream(filename));
+		Object newObject;
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextSegmentId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextStageId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextRiderId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextTeamId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextRaceId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof ArrayList) {
+			races = (ArrayList<Race>) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof ArrayList) {
+			teams = (ArrayList<Team>) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof HashMap) {
+			stageResults = (HashMap<Integer, ArrayList<Result>>) newObject;
+		}
+		ob.close();
 	}
 
 	@Override
