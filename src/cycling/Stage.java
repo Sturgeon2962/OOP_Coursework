@@ -268,10 +268,14 @@ public class Stage implements Serializable {
     }
 
     public void removeSegmentById(int segmentId){
+        Segment toRemove = null;
         for (Segment segment : this.getSegments()) {
             if (segment.getSegmentId() == segmentId) {
-                segments.remove(segmentId);
+                toRemove = segment;
             }
+        }
+        if (toRemove != null) {
+            this.getSegments().remove(toRemove);
         }
     }
 
