@@ -732,14 +732,11 @@ public class CyclingPortal implements CyclingPortalInterface {
 			int[] riders = getRidersRankInStage(stage.getStageId());
 			LocalTime[] ridertimes = getRankedAdjustedElapsedTimesInStage(stage.getStageId());
 			for(int i = 0; i< riders.length; i++){
-				System.out.println("Test1" + totalTime.containsKey(riders[i]));
 				if(totalTime.containsKey(riders[i])){
 					Duration x = Duration.between(LocalTime.parse("00:00:00"), ridertimes[i]);
 					totalTime.put(riders[i], (LocalTime) x.addTo(totalTime.get(riders[i])));
-					System.out.println(riders[i] +" Test " + x.addTo(totalTime.get(riders[i])));
 				}else{
 					totalTime.put(riders[i], ridertimes[i]);
-					//System.out.println(riders[i]);
 				}
 
 			}
@@ -747,7 +744,6 @@ public class CyclingPortal implements CyclingPortalInterface {
 		ArrayList<LocalTime> timeToReturn = new ArrayList<LocalTime>();
 		for(LocalTime i : totalTime.values()){
 			timeToReturn.add(i);
-			//System.out.println(i);
 		}
 		
 		Collections.sort(timeToReturn);
