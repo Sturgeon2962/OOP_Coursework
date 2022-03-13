@@ -1,14 +1,23 @@
 package cycling;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * CyclingPortal is love, CyclingPortal is life.
@@ -525,16 +534,30 @@ public class CyclingPortal implements CyclingPortalInterface {
 			// check for intermediate sprint
 			for (int i = 0; i < stage.getSegments().size(); i++) {
 				if (stage.getSegments().get(i).getType() == SegmentType.SPRINT) {
-					ArrayList<LocalTime> sprintTimes = new ArrayList<LocalTime>();
+					HashMap<Integer, LocalTime> sprintTimes = new HashMap<Integer, LocalTime>();
 					for (int j = 0; j < stageResult.size(); j++) {
-						sprintTimes.add(stageResult.get(j).getRiderTimes()[i+1]);
+						sprintTimes.put(stageResult.get(j).getRiderId(), stageResult.get(j).getRiderTimes()[i+1]);
 					}
-					// Order sprint times, then add rider points (make sure correct rider)
-					for (LocalTime time : sprintTimes) {
-						System.out.println(time);
+					// Order sprint times
+					ArrayList<Integer> orderedRiders = new ArrayList<Integer>();
+					sprintTimes.entrySet().stream().sorted(
+						(t1, t2) -> t1.getValue().compareTo(t2.getValue())
+					).forEach(t -> orderedRiders.add(t.getKey()));
+					// Add intermediate sprint points to riders
+					for (int k = 0; k < orderedRiders.size(); k++) {
+						for (Result result : stageResult) {
+							if (result.getRiderId() == orderedRiders.get(k)) {
+								try {
+									riderPoints[stageResult.indexOf(result)] += Stage.getSprintIntermediate()[k];
+								} catch (Exception e) {
+									break;
+								}
+							}
+						}
 					}
 				}
 			}
+			return riderPoints;
 		}
 		int[] emptyArray = new int[0];
 		return emptyArray;
@@ -542,26 +565,142 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getRidersMountainPointsInStage(int stageId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Stage stage = getStageById(stageId);
+		if (stageResults.containsKey(stageId)) {
+			ArrayList<Result> stageResult = stageResults.get(stageId);
+			int[] riderPoints = new int[stageResult.size()];
+			// Set default points to 0
+			Arrays.fill(riderPoints, 0);
+			for (int i = 0; i < stage.getSegments().size(); i++) {
+				if (stage.getSegments().get(i).getType() != SegmentType.SPRINT) {
+					HashMap<Integer, LocalTime> climbTimes = new HashMap<Integer, LocalTime>();
+					for (int j = 0; j < stageResult.size(); j++) {
+						climbTimes.put(stageResult.get(j).getRiderId(), stageResult.get(j).getRiderTimes()[i+1]);
+					}
+					// Order climb times
+					ArrayList<Integer> orderedRiders = new ArrayList<Integer>();
+					climbTimes.entrySet().stream().sorted(
+						(t1, t2) -> t1.getValue().compareTo(t2.getValue())
+					).forEach(t -> orderedRiders.add(t.getKey()));
+					// Add points
+					for (int k = 0; k < orderedRiders.size(); k++) {
+						for (Result result : stageResult) {
+							if (result.getRiderId() == orderedRiders.get(k)) {
+								switch (stage.getSegments().get(i).getType()) {
+									case C1:
+										try {
+											riderPoints[stageResult.indexOf(result)] += Stage.getMountainC1()[k];
+										} catch (Exception e) {
+											break;
+										}
+										break;
+									case C2:
+										try {
+											riderPoints[stageResult.indexOf(result)] += Stage.getMountainC2()[k];
+										} catch (Exception e) {
+											break;
+										}
+										break;
+									case C3:
+										try {
+											riderPoints[stageResult.indexOf(result)] += Stage.getMountainC3()[k];
+										} catch (Exception e) {
+											break;
+										}
+										break;
+									case C4:
+										try {
+											riderPoints[stageResult.indexOf(result)] += Stage.getMountainC4()[k];
+										} catch (Exception e) {
+											break;
+										}
+										break;
+									case HC:
+										try {
+											riderPoints[stageResult.indexOf(result)] += Stage.getMountainHC()[k];
+										} catch (Exception e) {
+											break;
+										}
+										break;
+									default:
+										break;
+								}
+							}
+						}
+					}
+				}
+			}
+			return riderPoints;
+		}
+		int[] emptyArray = new int[0];
+		return emptyArray;
 	}
 
 	@Override
 	public void eraseCyclingPortal() {
-		// TODO Auto-generated method stub
+		nextSegmentId = 1;
+		nextStageId = 1;
+		nextRiderId = 1;
+		nextTeamId = 1;
+		nextRaceId = 1;
 
+		races.clear();
+		teams.clear();
+		stageResults.clear();
 	}
 
 	@Override
 	public void saveCyclingPortal(String filename) throws IOException {
-		// TODO Auto-generated method stub
-
+		ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(filename));
+		ob.writeObject(nextSegmentId);
+		ob.writeObject(nextStageId);
+		ob.writeObject(nextRiderId);
+		ob.writeObject(nextTeamId);
+		ob.writeObject(nextRaceId);
+		ob.writeObject(races);
+		ob.writeObject(teams);
+		ob.writeObject(stageResults);
+		ob.flush();
+		ob.close();
 	}
 
 	@Override
 	public void loadCyclingPortal(String filename) throws IOException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-
+		ObjectInputStream ob = new ObjectInputStream(new FileInputStream(filename));
+		Object newObject;
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextSegmentId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextStageId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextRiderId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextTeamId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof Integer) {
+			nextRaceId = (Integer) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof ArrayList) {
+			races = (ArrayList<Race>) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof ArrayList) {
+			teams = (ArrayList<Team>) newObject;
+		}
+		newObject = ob.readObject();
+		if (newObject instanceof HashMap) {
+			stageResults = (HashMap<Integer, ArrayList<Result>>) newObject;
+		}
+		ob.close();
 	}
 
 	@Override

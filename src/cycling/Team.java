@@ -1,4 +1,5 @@
 package cycling;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author
  * @version 1.0
  */
-public class Team {
+public class Team implements Serializable {
     // Non-Static Team Attributes
     private String teamName;
     private ArrayList<Rider> teamMembers; 

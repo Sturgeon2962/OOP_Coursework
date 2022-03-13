@@ -1,5 +1,6 @@
 package cycling;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author
  * @version 1.0
  */
-public class Rider {
+public class Rider implements Serializable {
     // Non-static Rider Attributes
     private String name;
     private int riderId;
