@@ -603,7 +603,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public int[] getRidersMountainPointClassificationRank(int raceId) throws IDNotRecognisedException {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 }
+
