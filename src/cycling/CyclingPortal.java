@@ -757,7 +757,8 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getRidersPointsInRace(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
+		Race race = getRaceById(raceId);
+
 		return null;
 	}
 
@@ -769,8 +770,32 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getRidersGeneralClassificationRank(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		Race race = getRaceById(raceId);
+		HashMap<Integer,LocalTime> totalTime = new HashMap<Integer, LocalTime>();
+
+		for (Stage stage : race.getStages()){
+			int[] riders = getRidersRankInStage(stage.getStageId());
+			LocalTime[] ridertimes = getRankedAdjustedElapsedTimesInStage(stage.getStageId());
+			for(int i = 0; i< riders.length; i++){
+				if(totalTime.containsKey(riders[i])){
+					Duration x = Duration.between(LocalTime.parse("00:00:00"), ridertimes[i]);
+					totalTime.put(riders[i], (LocalTime) x.addTo(totalTime.get(riders[i])));
+				}else{
+					totalTime.put(riders[i], ridertimes[i]);
+				}
+
+			}
+		}
+
+		ArrayList<Integer> riderOverallRank = new ArrayList<Integer>();
+		int[] riderRanks = new int[riderOverallRank.size()];
+		totalTime.entrySet().stream().sorted(
+			(t1, t2) -> t1.getValue().compareTo(t2.getValue())
+			).forEach(t -> riderOverallRank.add(t.getKey()));
+		for (int i = 0; i < riderOverallRank.size(); i++) {
+			riderRanks[i] = riderOverallRank.get(i);
+		}
+		return riderRanks;
 	}
 
 	@Override
