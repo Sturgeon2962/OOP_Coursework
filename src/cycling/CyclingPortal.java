@@ -758,8 +758,24 @@ public class CyclingPortal implements CyclingPortalInterface {
 	@Override
 	public int[] getRidersPointsInRace(int raceId) throws IDNotRecognisedException {
 		Race race = getRaceById(raceId);
-
-		return null;
+		HashMap<Integer, Integer> overallRiderPoints = new HashMap<Integer, Integer>();
+		for (Stage stage : race.getStages()) {
+			int[] riderRank = getRidersRankInStage(stage.getStageId());
+			int[] riderPoints = getRidersPointsInStage(stage.getStageId());
+			for (int i = 0; i < riderRank.length; i++) {
+				if (overallRiderPoints.containsKey(riderRank[i])) {
+					overallRiderPoints.put(riderRank[i], overallRiderPoints.get(riderRank[i]) + riderPoints[i]);
+				} else {
+					overallRiderPoints.put(riderRank[i], riderPoints[i]);
+				}
+			}
+		}
+		int[] overallRiderRank = getRidersGeneralClassificationRank(raceId);
+		int[] riderPoints = new int[overallRiderRank.length];
+		for (int i = 0; i < overallRiderRank.length; i++) {
+			riderPoints[i] = overallRiderPoints.get(overallRiderRank[i]);
+		}
+		return riderPoints;
 	}
 
 	@Override
