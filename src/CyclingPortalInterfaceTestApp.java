@@ -359,7 +359,6 @@ public class CyclingPortalInterfaceTestApp {
 			LocalTime t9 = LocalTime.parse("00:00:06");
 			
 			LocalTime[] arr1 = {t1,t6,t9,t4};
-			LocalTime[] arr2 = {t1,t8,t8,t2};
 			LocalTime[] arr3 = {t1,t3,t7,t3};
 			LocalTime[] arr4 = {t1,t4,t6,t5};
 			LocalTime[] arr5 = {t1,t6,t5,t6};
