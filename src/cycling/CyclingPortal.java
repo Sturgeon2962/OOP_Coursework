@@ -790,6 +790,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		ArrayList<Integer> riderOverallRank = new ArrayList<Integer>();
 		totalTime.entrySet().stream().sorted(
 			(t1, t2) -> t1.getValue().compareTo(t2.getValue())).forEach(t -> riderOverallRank.add(t.getKey()));
+			int[] riderRanks = new int[riderOverallRank.size()];
 		for (int i = 0; i < riderOverallRank.size(); i++) {
 			riderRanks[i] = riderOverallRank.get(i);
 		}
