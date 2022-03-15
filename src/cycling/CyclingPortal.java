@@ -831,15 +831,48 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public int[] getRidersPointClassificationRank(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		HashMap<Integer, Integer> pointsMap = new HashMap<Integer, Integer>();
+		int[] riderIds = getRidersGeneralClassificationRank(raceId);
+		int[] points = getRidersPointsInRace(raceId);
+
+		for ( int i=0; i<riderIds.length; i++){
+			pointsMap.put(riderIds[i], points[i]);
+		}
+
+		ArrayList<Integer> sortedPoints = new ArrayList<Integer>();
+
+		pointsMap.entrySet().stream().sorted((p1, p2) -> -p1.getValue().compareTo(p2.getValue())).forEach(p -> sortedPoints.add(p.getKey()));
+
+		int[] thingsToReturn = new int[sortedPoints.size()];
+
+		for( int i = 0; i<sortedPoints.size(); i++){
+			thingsToReturn[i] = sortedPoints.get(i);
+		}
+
+		return thingsToReturn;
 	}
 
 	@Override
 	public int[] getRidersMountainPointClassificationRank(int raceId) throws IDNotRecognisedException {
-		// TODO Auto-generated method stub
-		
-		return null;
+		HashMap<Integer, Integer> mountainPointsMap = new HashMap<Integer, Integer>();
+		int[] riderIds = getRidersGeneralClassificationRank(raceId);
+		int[] points = getRidersMountainPointsInRace(raceId);
+
+		for ( int i=0; i<riderIds.length; i++){
+			mountainPointsMap.put(riderIds[i], points[i]);
+		}
+
+		ArrayList<Integer> mountainSortedPoints = new ArrayList<Integer>();
+
+		mountainPointsMap.entrySet().stream().sorted((p1, p2) -> -p1.getValue().compareTo(p2.getValue())).forEach(p -> mountainSortedPoints.add(p.getKey()));
+
+		int[] thingsToReturn = new int[mountainSortedPoints.size()];
+
+		for( int i = 0; i<mountainSortedPoints.size(); i++){
+			thingsToReturn[i] = mountainSortedPoints.get(i);
+		}
+
+		return thingsToReturn;
 	}
 
 }

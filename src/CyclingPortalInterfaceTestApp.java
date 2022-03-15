@@ -420,6 +420,26 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e) {
 			System.out.println(e.getMessage());
 		}
+
+		try{
+			System.out.println("Start");
+			for (int i: portal.getRidersPointClassificationRank(raceIds[2])){
+				System.out.println(i);
+			}
+			System.out.println("Stop");
+		} catch (IDNotRecognisedException e){
+			System.out.println(e.getMessage());
+		}
+
+		try{
+			System.out.println("Start");
+			for (int i: portal.getRidersMountainPointClassificationRank(raceIds[2])){
+				System.out.println(i);
+			}
+			System.out.println("Stop");
+		} catch (IDNotRecognisedException e){
+			System.out.println(e.getMessage());
+		}
 		// Check that removing rider, stage, race also removes their results
 	}
 
