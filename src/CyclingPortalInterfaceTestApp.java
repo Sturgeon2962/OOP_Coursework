@@ -414,5 +414,6 @@ public class CyclingPortalInterfaceTestApp {
 		}
 		// Check that removing rider, stage, race also removes their results
 	}
+	
 }
 
