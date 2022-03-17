@@ -107,8 +107,14 @@ public class Team implements Serializable {
     }
 
     public void removeRider(int riderId) {
-        for (Rider rider : this.getTeamMembers()) {
-            if (rider.getRiderId() == riderId) {
+        // for (Rider rider : this.getTeamMembers()) {
+        //     if (rider.getRiderId() == riderId) {
+        //         teamMembers.remove(riderId);
+        //     }
+        // }
+
+        for (int x = this.getTeamMembers().size(); x >= 0; x-- ){
+            if (this.getTeamMembers().get(x).getRiderId() == riderId){
                 teamMembers.remove(riderId);
             }
         }

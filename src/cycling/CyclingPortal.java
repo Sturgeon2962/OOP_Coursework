@@ -237,6 +237,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 		Stage stage = getStageById(stageId);
 		int raceId = getRaceIdByStageId(stageId);
 		getRaceById(raceId).removeStage(stage);
+		if (stageResults.containsKey(stageId)){
+			stageResults.remove(stageId);
+		}
 	}
 
 	@Override
