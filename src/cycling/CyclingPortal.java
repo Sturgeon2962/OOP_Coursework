@@ -308,7 +308,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeTeam(int teamId) throws IDNotRecognisedException {
-		teams.remove(getTeamById(teamId));	
+		teams.remove(getTeamById(teamId));
+		for (Rider rider : getTeamById(teamId).getTeamMembers()) {
+			removeRider(rider.getRiderId());
+		}
 	}
 
 	@Override
@@ -348,9 +351,16 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 	@Override
 	public void removeRider(int riderId) throws IDNotRecognisedException {
-		//Remove to Results
 		Team ridersTeam = getTeamByRiderId(riderId);
 		ridersTeam.removeRider(riderId);
+		for (ArrayList<Result> stageResult : stageResults.values()) {
+			for (Result result : stageResult) {
+				if (result.getRiderId() == riderId) {
+					stageResult.remove(result);
+					break;
+				}
+			}
+		}
 	}
 
 	@Override
