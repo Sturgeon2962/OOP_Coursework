@@ -2,7 +2,6 @@ package cycling;
 
 import java.util.Comparator;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * This abstract class is used to represent a segment within a stage.

@@ -1,9 +1,7 @@
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Random;
 
 import cycling.CyclingPortal;
 import cycling.CyclingPortalInterface;
@@ -17,7 +15,6 @@ import cycling.InvalidNameException;
 import cycling.InvalidStageStateException;
 import cycling.InvalidStageTypeException;
 import cycling.NameNotRecognisedException;
-import cycling.Segment;
 import cycling.SegmentType;
 import cycling.StageType;
 
