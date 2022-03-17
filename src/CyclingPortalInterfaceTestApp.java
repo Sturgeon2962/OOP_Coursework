@@ -440,7 +440,7 @@ public class CyclingPortalInterfaceTestApp {
 		} catch (IDNotRecognisedException e){
 			System.out.println(e.getMessage());
 		}
-		// Check that removing rider, stage, race also removes their results
+		// Check that removing rider, stage, race, team also removes their results
 	}
 
 }
