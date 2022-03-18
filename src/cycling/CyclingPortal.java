@@ -33,7 +33,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	private HashMap<Integer, ArrayList<Result>> stageResults = new HashMap<Integer, ArrayList<Result>>();
 
 	/**
-	 * A function to check weather a given name meets the standards of given criteria
+	 * A method to check weather a given name meets the standards of given criteria
 	 * 
 	 * @param name A name of a rider or race
 	 * @throws InvalidNameException
@@ -50,7 +50,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to get the race object from the race Id
+	 * A method to get the race object from the race Id
 	 * 
 	 * @param raceId The id of a race 
 	 * @return The race object 
@@ -66,7 +66,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to find the id of the race which the stage is in
+	 * A method to find the id of the race which the stage is in
 	 * 
 	 * @param stageId The Id of the stage
 	 * @return The Id of the race
@@ -84,7 +84,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to find the id of the stage which the segment is in
+	 * A method to find the id of the stage which the segment is in
 	 * 
 	 * @param segmentId the Id of the segment
 	 * @return The Id of the stage
@@ -104,7 +104,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to use the stage Id to get the stage
+	 * A method to use the stage Id to get the stage
 	 * 
 	 * @param stageId The Id of the stage
 	 * @return The stage object
@@ -122,7 +122,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to check if the location given is valid
+	 * A method to check if the location given is valid
 	 * 
 	 * @param stageLength The lenght of the stage
 	 * @param location The Location of the beginning of the segment
@@ -137,7 +137,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to check weather the stage has been finnished or not
+	 * A method to check weather the stage has been finnished or not
 	 * 
 	 * @param targetState The State which you want the stage to be at
 	 * @param stageId The Id of the stage
@@ -152,7 +152,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A Function to check weather a segment is able to be created
+	 * A method to check weather a segment is able to be created
 	 * 
 	 * @param stageId The Id of the stage
 	 * @param location The start location of the segment
@@ -166,7 +166,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to get the team object by the team Id
+	 * A method to get the team object by the team Id
 	 * 
 	 * @param teamId The id of the team
 	 * @return The Team object
@@ -182,7 +182,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to get the team that the rider is in
+	 * A method to get the team that the rider is in
 	 * 
 	 * @param riderId The id of the Rider
 	 * @return the team object
@@ -200,7 +200,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to get the rider object from the rider Id
+	 * A method to get the rider object from the rider Id
 	 * 
 	 * @param riderId The Id of the rider
 	 * @return The rider object
@@ -218,7 +218,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A function to detremin if the type of the segment
+	 * A method to detremin if the type of the segment
 	 * 
 	 * @param type A segmentType
 	 * @return Boolean value
