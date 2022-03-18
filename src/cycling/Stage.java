@@ -57,29 +57,43 @@ public class Stage implements Serializable {
 
     // Getters/Setters
 
-
+    /**
+     * A function to check weather a stage is complete or not
+     *  
+     * @return A boolean variable fullyCreated
+     */
     public boolean isFullyCreated() {
         return fullyCreated;
     }
 
+    /**
+     * A Setter for fullyCreated
+     * 
+     * @param fullyCreated A boolean value
+     */
     public void setFullyCreated(boolean fullyCreated) {
         this.fullyCreated = fullyCreated;
     }
 
+    /**
+     * A Getter for stage Id
+     * 
+     * @return StageId
+     */
     public int getStageId() {
         return stageId;
     }
 
+    /**
+     * A Setter for Stage Id
+     * @param id integer value
+     */
     private void setStageId(int id){
         this.stageId = id;
     }
+
     /**
-     * A getter for the Flat sprin points
-     * 
-     * @return Returns an array of integers containing the flat sprint points
-     */
-    /**
-     * The method sets the name of the stage
+     * A Setter for the name of the stage
      * 
      * @param name The name of the stage
      */
@@ -88,7 +102,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * The method sets the description of the stage
+     * A Setter for the stage description
      * 
      * @param description A breif description of the stage
      */
@@ -97,7 +111,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * The method sets the length of the stage
+     * A Setter for the length of the stage
      * 
      * @param length The length of the stage (km)
      */
@@ -106,7 +120,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * The method sets the start time of the stage
+     * A Setter for the start time of the stage
      * 
      * @param startTime The start time of the race
      */
@@ -115,7 +129,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * The method sets the category of the stage
+     * A Setter for the category of the stage
      * 
      * @param category The category of the stage - {@link StageType#FLAT},
      * {@link StageType#MEDIUM_MOUNTAIN}, {@link StageType#HIGH_MOUNTAIN},
@@ -125,6 +139,11 @@ public class Stage implements Serializable {
         this.category = category;
     }
     
+    /**
+     * A getter for the Flat sprin points
+     * 
+     * @return Returns an array of integers containing the flat sprint points
+     */
     public static int[] getSprintFlat() {
         return sprintFlatPoints;
     }
@@ -139,7 +158,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * Agetter for a description of the race
+     * A getter for a description of the race
      * 
      * @return Returns a string containing a description of the race
      */
@@ -264,6 +283,11 @@ public class Stage implements Serializable {
         return mountainHCPoints;
     }
 
+    /**
+     * A Function to delete the Segment using the Id
+     * 
+     * @param segmentId The Id of the segment
+     */
     public void removeSegmentById(int segmentId){
         Segment toRemove = null;
         for (Segment segment : this.getSegments()) {
@@ -276,6 +300,11 @@ public class Stage implements Serializable {
         }
     }
 
+    /**
+     * A function to add a segment to a stage
+     * 
+     * @param segment The Segment to be added
+     */
     public void addSegment(Segment segment){
         segments.add(segment);
 
