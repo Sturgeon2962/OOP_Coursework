@@ -87,12 +87,21 @@ public class Race implements Serializable {
     private void setRaceId(int id){
         this.raceID = id;
     }
-    // Methods below this point
 
+    /**
+     * The method adds a stage to the race
+     * 
+     * @param newStage A stage to add to the race
+     */
     public void addStage(Stage newStage){
         getStages().add(newStage);
     }
 
+    /**
+     * The method removes a stage from the race
+     * 
+     * @param stage A Stage object to remove from the race
+     */
     public void removeStage(Stage stage){
         getStages().remove(stage);
     }
