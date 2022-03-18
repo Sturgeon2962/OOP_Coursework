@@ -16,13 +16,6 @@ public class Team implements Serializable {
     private String description;
     private int teamId;
 
-
-    /*
-    Could be better to use random IDs
-    Between 0 and Integer.maxValue or similar
-    Means people can't malicously go through every ID
-    */
-
     // Getter and setters
 
     /**
@@ -42,7 +35,7 @@ public class Team implements Serializable {
     /**
      * Getter for the team name
      * 
-     * @return Returns the  string containing team name
+     * @return Returns a string containing team name
      */
     public String getTeamName(){
         return this.teamName;
@@ -98,14 +91,29 @@ public class Team implements Serializable {
         return newRider;
     }
 
+    /**
+     * Getter for the ID of the team
+     * 
+     * @return An int of the ID of the team
+     */
     public int getId() {
         return this.teamId;
     }
 
+    /**
+     * Setter for the ID of the team
+     * 
+     * @param id The ID of the team
+     */
     public void setTeamId(int id){
         this.teamId = id;
     }
 
+    /**
+     * Removes a rider from the team
+     * 
+     * @param riderId The ID of the targe rider to be removed
+     */
     public void removeRider(int riderId) {
         for (int x = this.getTeamMembers().size()-1; x >= 0; x-- ){
             if (this.getTeamMembers().get(x).getRiderId() == riderId){
