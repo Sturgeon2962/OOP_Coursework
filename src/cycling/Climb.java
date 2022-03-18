@@ -64,5 +64,4 @@ public class Climb extends Segment {
         this.avgGradient = avgGradient;
     }
 
-    // Other shit
 }
