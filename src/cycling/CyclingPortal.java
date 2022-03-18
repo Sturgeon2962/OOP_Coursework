@@ -140,7 +140,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	/**
 	 * A function to check weather the stage has been finnished or not
 	 * 
-	 * @param targetState
+	 * @param targetState The State which you want the stage to be at
 	 * @param stageId The Id of the stage
 	 * @param msg A message that gets thrown with the exception
 	 * @throws IDNotRecognisedException
@@ -153,9 +153,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 	}
 
 	/**
-	 * A
-	 * @param stageId
-	 * @param location
+	 * A Function to check weather a segment is able to be created
+	 * 
+	 * @param stageId The Id of the stage
+	 * @param location The start location of the segment
 	 * @throws InvalidLocationException
 	 * @throws InvalidStageStateException
 	 * @throws IDNotRecognisedException
@@ -165,6 +166,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		checkValidStageState(false, stageId, "stage already finished");
 	}
 
+	/**
+	 * A function to get the team object by the team Id
+	 * 
+	 * @param teamId The id of the team
+	 * @return The Team object
+	 * @throws IDNotRecognisedException
+	 */
 	private Team getTeamById(int teamId) throws IDNotRecognisedException{
 		for(Team team:teams){
 			if (team.getId() == teamId){
@@ -174,6 +182,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("team does not exist");
 	}
 
+	/**
+	 * A function to get the team that the rider is in
+	 * 
+	 * @param riderId The id of the Rider
+	 * @return the team object
+	 * @throws IDNotRecognisedException
+	 */
 	private Team getTeamByRiderId(int riderId) throws IDNotRecognisedException {
 		for(Team team:teams){
 			for(Rider rider : team.getTeamMembers()) {
@@ -185,6 +200,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("rider does not exist");
 	}
 
+	/**
+	 * A function to get the rider object from the rider Id
+	 * 
+	 * @param riderId The Id of the rider
+	 * @return The rider object
+	 * @throws IDNotRecognisedException
+	 */
 	private Rider getRiderById(int riderId) throws IDNotRecognisedException {
 		for(Team team:teams){
 			for(Rider rider : team.getTeamMembers()) {
@@ -196,6 +218,12 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("rider does not exist");
 	}
 
+	/**
+	 * A function to detremin if the type of the segment
+	 * 
+	 * @param type A segmentType
+	 * @return Boolean value
+	 */
 	private boolean isClimb(SegmentType type) {
 		if(type == SegmentType.SPRINT) {
 			return false;
