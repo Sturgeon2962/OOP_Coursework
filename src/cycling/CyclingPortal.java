@@ -33,6 +33,12 @@ public class CyclingPortal implements CyclingPortalInterface {
 	private ArrayList<Team> teams = new ArrayList<Team>();
 	private HashMap<Integer, ArrayList<Result>> stageResults = new HashMap<Integer, ArrayList<Result>>();
 
+	/**
+	 * A function to check weather a given name meets the standards of given criteria
+	 * 
+	 * @param name A name of a rider or race
+	 * @throws InvalidNameException
+	 */
 	private void isInvalidName(String name) throws InvalidNameException{
 
 		if(name.equals(null) || name.equals("")){
@@ -44,6 +50,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		//check if string is too long - what is system limit of characters?	
 	}
 
+	/**
+	 * A function to get the race object from the race Id
+	 * 
+	 * @param raceId The id of a race 
+	 * @return The race object 
+	 * @throws IDNotRecognisedException
+	 */
 	private Race getRaceById(int raceId) throws IDNotRecognisedException{
 		for (Race race : races) {
 			if (race.getRaceID() == raceId) {
@@ -53,6 +66,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
+	/**
+	 * A function to find the id of the race which the stage is in
+	 * 
+	 * @param stageId The Id of the stage
+	 * @return The Id of the race
+	 * @throws IDNotRecognisedException
+	 */
 	private int getRaceIdByStageId(int stageId) throws IDNotRecognisedException {
 		for (Race race : races) {
 			for (Stage stage : race.getStages()) {
@@ -64,6 +84,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
+	/**
+	 * A function to find the id of the stage which the segment is in
+	 * 
+	 * @param segmentId the Id of the segment
+	 * @return The Id of the stage
+	 * @throws IDNotRecognisedException
+	 */
 	private int getStageIdBySegmentId(int segmentId) throws IDNotRecognisedException {
 		for (Race race : races) {
 			for (Stage stage : race.getStages()) {
@@ -77,6 +104,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
+	/**
+	 * A function to use the stage Id to get the stage
+	 * 
+	 * @param stageId The Id of the stage
+	 * @return The stage object
+	 * @throws IDNotRecognisedException
+	 */
 	private Stage getStageById(int stageId) throws IDNotRecognisedException {
 		for (Race race : races) {
 			for (Stage stage : race.getStages()) {
@@ -88,6 +122,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		throw new IDNotRecognisedException("The Id does not exist");
 	}
 
+	/**
+	 * A function to check if the location given is valid
+	 * 
+	 * @param stageLength The lenght of the stage
+	 * @param location The Location of the beginning of the segment
+	 * @throws InvalidLocationException
+	 */
 	private void checkValidLocation(double stageLength, double location) throws InvalidLocationException {
 		if(location < 0) {
 			throw new InvalidLocationException("location can't be negitive");
@@ -96,12 +137,29 @@ public class CyclingPortal implements CyclingPortalInterface {
 		}
 	}
 
+	/**
+	 * A function to check weather the stage has been finnished or not
+	 * 
+	 * @param targetState
+	 * @param stageId The Id of the stage
+	 * @param msg A message that gets thrown with the exception
+	 * @throws IDNotRecognisedException
+	 * @throws InvalidStageStateException
+	 */
 	private void checkValidStageState(boolean targetState, int stageId, String msg) throws IDNotRecognisedException, InvalidStageStateException {
 		if(targetState != getStageById(stageId).isFullyCreated()) {
 			throw new InvalidStageStateException(msg);
 		}
 	}
 
+	/**
+	 * A
+	 * @param stageId
+	 * @param location
+	 * @throws InvalidLocationException
+	 * @throws InvalidStageStateException
+	 * @throws IDNotRecognisedException
+	 */
 	private void checkValidCreateSegment(int stageId, double location) throws InvalidLocationException, InvalidStageStateException, IDNotRecognisedException {
 		checkValidLocation(getStageLength(stageId), location);
 		checkValidStageState(false, stageId, "stage already finished");
