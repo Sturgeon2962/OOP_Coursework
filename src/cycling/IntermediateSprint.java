@@ -7,9 +7,8 @@ package cycling;
  * @version 1.0
  */
 public class IntermediateSprint extends Segment {
-    // Constructor
     /**
-     * A class to represent an Intermediate sprint segment
+     * Constructor to creare an intermediate sprint in a race
      * 
      * @param location How far into the race this segment finishes
      */

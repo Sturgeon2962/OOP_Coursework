@@ -19,7 +19,6 @@ import java.util.HashMap;
  * 
  * @author Humans
  * @version 1.0
- *
  */
 public class CyclingPortal implements CyclingPortalInterface {
 	// Move lists to be stored here

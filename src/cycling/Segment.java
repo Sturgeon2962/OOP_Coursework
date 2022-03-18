@@ -29,10 +29,20 @@ public abstract class Segment implements Serializable {
         setSegmentId(id);
     }
     
+    /**
+     * A method to get the ID of the segment
+     * 
+     * @return A int of the ID of the segment
+     */
     public int getSegmentId() {
         return segmentId;
     }
 
+    /**
+     * A method to set the ID of the segment
+     * 
+     * @param id The ID of the segment
+     */
     public void setSegmentId(int id) {
         this.segmentId = id;
     }
@@ -77,8 +87,10 @@ public abstract class Segment implements Serializable {
         this.type = type;
     }
 
-    // Any other methods
     // Location comparator
+    /**
+     * A comparator, allowing segments to be order by there location along the stage
+     */
     public static Comparator<Segment> compareByLocation = new Comparator<Segment>() {
 
         @Override
