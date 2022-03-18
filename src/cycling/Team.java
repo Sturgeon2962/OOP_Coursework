@@ -110,7 +110,7 @@ public class Team implements Serializable {
     }
 
     /**
-     * Removes a rider from the team
+     * A method to remove a rider from the team
      * 
      * @param riderId The ID of the targe rider to be removed
      */

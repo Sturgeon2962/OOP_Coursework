@@ -58,7 +58,7 @@ public class Stage implements Serializable {
     // Getters/Setters
 
     /**
-     * A function to check weather a stage is complete or not
+     * A method to check weather a stage is complete or not
      *  
      * @return A boolean variable fullyCreated
      */
@@ -284,7 +284,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * A Function to delete the Segment using the Id
+     * A method to delete the Segment using the Id
      * 
      * @param segmentId The Id of the segment
      */
@@ -301,7 +301,7 @@ public class Stage implements Serializable {
     }
 
     /**
-     * A function to add a segment to a stage
+     * A method to add a segment to a stage
      * 
      * @param segment The Segment to be added
      */
