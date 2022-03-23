@@ -236,7 +236,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		for(int i = 0; i < races.size(); i++){
 			raceIds[i] = races.get(i).getRaceID();
 		}
-
+		
 		return raceIds;
 	}
 
