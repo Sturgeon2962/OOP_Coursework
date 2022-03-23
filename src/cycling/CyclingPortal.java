@@ -163,6 +163,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	 * @throws IDNotRecognisedException
 	 */
 	private void checkValidCreateSegment(int stageId, double location) throws InvalidLocationException, InvalidStageStateException, IDNotRecognisedException {
+		assert (location <= getStageById(stageId).getLength() && location > 0) : "invalid location";
 		checkValidLocation(getStageLength(stageId), location);
 		checkValidStageState(false, stageId, "stage already finished");
 	}
@@ -238,7 +239,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		for(int i = 0; i < races.size(); i++){
 			raceIds[i] = races.get(i).getRaceID();
 		}
-		
+
 		return raceIds;
 	}
 
@@ -463,6 +464,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 				}
 			}
 			stageResult.add(new Result(riderId, checkpoints));
+			// Sort the results by overall stage time
 			Collections.sort(stageResult, Result.compareByTime);
 		} else {
 			ArrayList<Result> newStageResults = new ArrayList<Result>();
@@ -498,8 +500,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 		int index = -1;
 		if (stageResults.containsKey(stageId)) {
 			ArrayList<Result> stageResult = stageResults.get(stageId);
+			// Search through the stage's results
 			for (Result result : stageResult) {
 				if (result.getRiderId() == riderId) {
+					// Return time if time trail
 					if (!adjust) {
 						LocalTime timeToReturn = LocalTime.parse("00:00:00");
 						Duration time = Duration.between(result.getRiderTimes()[0], result.getRiderTimes()[result.getRiderTimes().length-1]);
@@ -513,6 +517,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 			if (index < 0) {
 				return null;
 			} else {
+				// Create an arraylist of all times in the race
 				ArrayList<LocalTime> riderTimes = new ArrayList<LocalTime>();
 				for (Result result : stageResult) {
 					LocalTime timeToReturn = LocalTime.parse("00:00:00");
@@ -520,6 +525,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 					timeToReturn = (LocalTime) time.addTo(timeToReturn);
 					riderTimes.add(timeToReturn);
 				}
+				// Adjust times from the chosen rider
 				while ((index > 0)&&(Duration.between(riderTimes.get(index-1), riderTimes.get(index)).toMillis()<1000)) {
 					index--;
 				}
@@ -550,6 +556,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 	public int[] getRidersRankInStage(int stageId) throws IDNotRecognisedException {
 		getStageById(stageId);
 		if (stageResults.containsKey(stageId)) {
+			// Results are already sorted by rider rank
 			ArrayList<Result> stageResult = stageResults.get(stageId);
 			int[] riderRanks = new int[stageResult.size()];
 			for (int i = 0; i < stageResult.size(); i++) {
@@ -566,6 +573,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		if (stageResults.containsKey(stageId)) {
 			ArrayList<Result> stageResult = stageResults.get(stageId);
 			LocalTime[] riderTimes = new LocalTime[stageResult.size()];
+			// If only 1 time in the result, no adjustment required
 			if (riderTimes.length <= 1) {
 				for (int i = 0; i < riderTimes.length; i++) {
 					LocalTime timeToReturn = LocalTime.parse("00:00:00");
@@ -575,6 +583,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 				}
 				return riderTimes;
 			} else {
+				// Create arraylist of unadjusted rider times
 				ArrayList<LocalTime> originalRiderTimes = new ArrayList<LocalTime>();
 				for (Result result : stageResult) {
 					LocalTime timeToReturn = LocalTime.parse("00:00:00");
@@ -582,6 +591,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 					timeToReturn = (LocalTime) time.addTo(timeToReturn);
 					originalRiderTimes.add(timeToReturn);
 				}
+				// Adjust every riders time
 				for (int i = riderTimes.length-1; i > 0; i--) {
 					int index = i;
 					while ((index > 0)&&(Duration.between(originalRiderTimes.get(index-1), originalRiderTimes.get(index)).toMillis()<1000)) {
@@ -618,8 +628,10 @@ public class CyclingPortal implements CyclingPortalInterface {
 					stagePoints = Stage.getSprintTT();
 					break;
 				default:
+					assert false;
 					stagePoints = new int[0];
 			}
+			// Add points to every rider
 			for (int i = 0; i < riderPoints.length; i++) {
 				if (i >= stagePoints.length) {
 					riderPoints[i] = 0;
@@ -719,6 +731,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 										}
 										break;
 									default:
+										assert false;
 										break;
 								}
 							}
@@ -806,11 +819,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		int[] stageids;
 		for (Race race: races){
 			if (race.getName().equals(name)){
+				// Get stage Ids of stages in the race
 				stageids = new int[race.getStages().size()]; 
 				for (int i=0;i<stageids.length;i++){
 					stageids[i] = race.getStages().get(i).getStageId();
 				}
-				races.remove(race);		
+				races.remove(race);
+				// Remove stage results
 				for(int stage:stageids){
 					stageResults.remove(stage);
 				}
@@ -828,6 +843,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		for (Stage stage : race.getStages()){
 			int[] riders = getRidersRankInStage(stage.getStageId());
 			LocalTime[] ridertimes = getRankedAdjustedElapsedTimesInStage(stage.getStageId());
+			// Add riders times to hashmap
 			for(int i = 0; i< riders.length; i++){
 				if(totalTime.containsKey(riders[i])){
 					Duration x = Duration.between(LocalTime.parse("00:00:00"), ridertimes[i]);
@@ -838,16 +854,19 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 			}
 		}
+		// Get total rider times into a list
 		ArrayList<LocalTime> timeToReturn = new ArrayList<LocalTime>();
 		for(LocalTime i : totalTime.values()){
 			timeToReturn.add(i);
 		}
 		
+		// Sort the overall rider times
 		Collections.sort(timeToReturn);
+		
 		LocalTime[] times = new LocalTime[timeToReturn.size()];
 		for(int i = 0; i < timeToReturn.size(); i++){
 			times[i] = timeToReturn.get(i);
-		} 
+		}
 		return times;
 	}
 
@@ -856,6 +875,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		Race race = getRaceById(raceId);
 		HashMap<Integer, Integer> overallRiderPoints = new HashMap<Integer, Integer>();
 		for (Stage stage : race.getStages()) {
+			// Add rider results for stage
 			int[] riderRank = getRidersRankInStage(stage.getStageId());
 			int[] riderPoints = getRidersPointsInStage(stage.getStageId());
 			for (int i = 0; i < riderRank.length; i++) {
@@ -866,6 +886,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 				}
 			}
 		}
+		// Add overall points in order of GC
 		int[] overallRiderRank = getRidersGeneralClassificationRank(raceId);
 		int[] riderPoints = new int[overallRiderRank.length];
 		for (int i = 0; i < overallRiderRank.length; i++) {
@@ -879,6 +900,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		Race race = getRaceById(raceId);
 		HashMap<Integer, Integer> overallRiderMountainPoints = new HashMap<Integer, Integer>();
 		for (Stage stage : race.getStages()) {
+			// Add rider results for stage
 			int[] riderRank = getRidersRankInStage(stage.getStageId());
 			int[] riderPoints = getRidersMountainPointsInStage(stage.getStageId());
 			for (int i = 0; i < riderRank.length; i++) {
@@ -889,6 +911,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 				}
 			}
 		}
+		// Add points in order of GC
 		int[] overallRiderRank = getRidersGeneralClassificationRank(raceId);
 		int[] riderPoints = new int[overallRiderRank.length];
 		for (int i = 0; i < overallRiderRank.length; i++) {
@@ -917,6 +940,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 		}
 
 		ArrayList<Integer> riderOverallRank = new ArrayList<Integer>();
+		// Add riderIds in order of ascending time
 		totalTime.entrySet().stream().sorted((t1, t2) -> t1.getValue().compareTo(t2.getValue())).forEach(t -> riderOverallRank.add(t.getKey()));
 		int[] riderRanks = new int[riderOverallRank.size()];
 		for (int i = 0; i < riderOverallRank.size(); i++) {
@@ -937,6 +961,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 		ArrayList<Integer> sortedPoints = new ArrayList<Integer>();
 
+		// Add points in decending order
 		pointsMap.entrySet().stream().sorted((p1, p2) -> -p1.getValue().compareTo(p2.getValue())).forEach(p -> sortedPoints.add(p.getKey()));
 
 		int[] thingsToReturn = new int[sortedPoints.size()];
@@ -960,6 +985,7 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 		ArrayList<Integer> mountainSortedPoints = new ArrayList<Integer>();
 
+		// Add mountain points in decending order
 		mountainPointsMap.entrySet().stream().sorted((p1, p2) -> -p1.getValue().compareTo(p2.getValue())).forEach(p -> mountainSortedPoints.add(p.getKey()));
 
 		int[] thingsToReturn = new int[mountainSortedPoints.size()];
@@ -970,6 +996,4 @@ public class CyclingPortal implements CyclingPortalInterface {
 
 		return thingsToReturn;
 	}
-
 }
-
