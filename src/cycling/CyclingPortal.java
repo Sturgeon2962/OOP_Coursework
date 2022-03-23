@@ -46,7 +46,9 @@ public class CyclingPortal implements CyclingPortalInterface {
 		if(name.contains(" ")){
 			throw new InvalidNameException("Name is more than 1 word");
 		}
-		//check if string is too long - what is system limit of characters?	
+		if(name.length() >= 2147483647){
+			throw new InvalidNameException("Name too long");
+		}	
 	}
 
 	/**
