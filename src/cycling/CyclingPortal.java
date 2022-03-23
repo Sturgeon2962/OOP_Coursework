@@ -756,11 +756,13 @@ public class CyclingPortal implements CyclingPortalInterface {
 		ob.writeObject(races);
 		ob.writeObject(teams);
 		ob.writeObject(stageResults);
+		ob.writeObject(this);
 		ob.flush();
 		ob.close();
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void loadCyclingPortal(String filename) throws IOException, ClassNotFoundException {
 		ObjectInputStream ob = new ObjectInputStream(new FileInputStream(filename));
 		Object newObject;
